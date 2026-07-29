@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "chapterIndex": 10,
+  "notes": "Carl sleeps ten straight hours in a rented safe-room bed, showers and shaves, and loses the Fatigued debuff. Tally explains that a purchased personal space follows you from floor to floor. Back out in the Floor 1 tunnels the pair grind Scatterers — including a Level 4 Brood Guardian — proving the toad cudgel and the poker both useless and confirming that bare feet outdamage weapons; they collect Scatterer Hemolymph and both reach Level 5, taking Pugilism, Unarmed Combat, Foot Soldier and Smush to 5 (his three points per level are still undistributable, now 12 banked). He smokes his way down to nine cigarettes, learns from Donut that Beatrice was cheating on him, and ends the chapter lighting a stick of Goblin Dynamite and hurling it into a pitch-black roach-filled room behind a Spanish 'No entrar' sign.",
+  "set": {
+    "level": 5,
+    "location": "World Dungeon — Floor 1 (tunnels outside the safe room, at the door to the Scatterer nest)",
+    "scene": "scene-floor1-tunnels",
+    "misc": {
+      "undistributedStatPoints": 12,
+      "personalSpace": "Not purchased. Transfers from floor to floor and safe room to safe room once bought; accessories such as crafting tables should be bought as early as possible."
+    }
+  },
+  "inventory": {
+    "add": [
+      {
+        "id": "scatterer-hemolymph",
+        "name": "Vial of Scatterer Hemolymph",
+        "rarity": "common",
+        "effects": "Alchemy material.",
+        "description": "Several vials of the white goo that comes out of a dead Scatterer, looted while grinding the Level 4 roaches. The system identifies it as an alchemy material. (The book says 'several vials' without giving a count.)"
+      }
+    ],
+    "update": [
+      {
+        "id": "dynamite",
+        "name": "Goblin Dynamite",
+        "qty": 4,
+        "effects": "Extremely volatile — it may go off without lighting the wick, or from a loud noise, or if squeezed too hard. Keep it in your inventory until you're ready to use it.",
+        "description": "Red sticks that sweat something wet and sticky. From the Silver Goblin Box; Carl lit one and threw it into the dark round room at the end of the tunnel, leaving four."
+      },
+      {
+        "id": "marlboro-reds",
+        "name": "Marlboro Reds",
+        "qty": 9,
+        "description": "Nine cigarettes left after the one Carl smoked outside the safe room. He rations them once he realizes there may never be any more, and Donut hates them."
+      },
+      {
+        "id": "poker",
+        "description": "A wrought-iron fireplace poker with a screw-on point. From a Bronze Weapon Box. Carl stabbed the Scatterer Brood Guardian with it, the roach's head knocked it clean out of his hand, and he pronounced it useless and shoved it back into his inventory."
+      },
+      {
+        "id": "toad-cudgel",
+        "description": "A 3/4-length club shaped by someone with only a vague idea of what a baseball bat is. From a Bronze Weapon Box. Carl swung it at the Scatterer Brood Guardian; the rounded edge bounced off, did little damage, and forced him to bend down awkwardly to use it."
+      }
+    ]
+  },
+  "skills": {
+    "update": [
+      { "id": "pugilism", "level": 5 },
+      { "id": "unarmed-combat", "level": 5 },
+      { "id": "foot-soldier", "level": 5 },
+      { "id": "smush", "level": 5 }
+    ]
+  },
+  "effects": {
+    "remove": ["fatigued"]
+  },
+  "sources": [
+    {
+      "field": "level",
+      "quote": "Both Donut and I were level 5 when we got to the door."
+    },
+    {
+      "field": "skills",
+      "quote": "For me, the higher levels didn’t really mean anything. I received three stat points every time I leveled, but I couldn’t distribute them yet. The only thing that helped was that my Pugilism, Unarmed Combat, Foot Soldier, and Smush skills were all level 5 now also."
+    },
+    {
+      "field": "misc.undistributedStatPoints",
+      "quote": "I received three stat points every time I leveled, but I couldn’t distribute them yet."
+    },
+    {
+      "field": "effects.fatigued",
+      "quote": "I awakened feeling refreshed and full of energy. I looked at the countdown time, astonished that I’d slept 10 hours straight."
+    },
+    {
+      "field": "misc.personalSpace",
+      "quote": "“If I buy a personal space, will it transfer from level to level?” “Yes, it will,” he said. “And from safe space to safe space. Also, it’s best to buy all the accessories as soon as you can. Some of the items only upgrade when it goes down a level, so if you wait several levels before you purchase a crafting table, it won’t get as strong as one purchased earlier.”"
+    },
+    {
+      "field": "location",
+      "quote": "Soon thereafter, we left to hunt for some bugs. … The door at the end of the tunnel didn’t have any sort of official sign on my minimap. … there was a paper sign attached to the door written in Spanish. … “No entrar,” I whispered, squinting at the sign."
+    },
+    {
+      "field": "inventory.scatterer-hemolymph",
+      "quote": "We received several vials of something called Scatterer Hemolymph, which looked like the white goo that came out of them when they died. The system identified it as an alchemy material."
+    },
+    {
+      "field": "inventory.dynamite",
+      "quote": "Goblin Dynamite. This stuff is especially volatile. It’s so volatile, you probably don’t even need to light the wick to set it off. It’s so volatile, even loud noises might set it off. Keep it in your inventory until you’re ready to use it. … I lit the long wick, which started hissing and popping like a sparkler. I tossed the dynamite into the room, throwing it as hard as I could."
+    },
+    {
+      "field": "inventory.marlboro-reds",
+      "quote": "I stepped a bit from the entrance, and I pulled out a cigarette and lit it, sighing deeply. I counted, and I had nine left after this one."
+    },
+    {
+      "field": "inventory.poker",
+      "quote": "It charged again, and I stabbed with the iron stick. Its giant head knocked the poker right out of my hand, and it went flying. This place has the shittiest weapons."
+    },
+    {
+      "field": "inventory.toad-cudgel",
+      "quote": "I swung the cudgel down at its head. The rounded edge of my weapon bounced off the creature, which hissed and fell back. The hit didn’t appear to do much damage. Plus I had to awkwardly bend down to use it."
+    }
+  ]
+}
