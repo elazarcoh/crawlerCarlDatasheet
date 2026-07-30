@@ -1,0 +1,4 @@
+{
+  "main": { "title": "main (merged: Windows fix, flat equipment, AI achievement voice)", "ref": "main @ e3fe99b", "built": "2026-07-30" },
+  "pr-3": { "title": "PR #3 — Enhanced Growth on Donut's level 2 (Str 12 / Cha 27)", "ref": "fix/donut-enhanced-growth-ch08 @ 0f97311", "built": "2026-07-30" }
+}
