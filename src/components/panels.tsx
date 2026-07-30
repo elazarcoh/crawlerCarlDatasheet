@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { EQUIPMENT_SLOTS, type Snapshot } from "../schema";
+import { EQUIPMENT_SLOTS, type EquipmentSlot, type Snapshot } from "../schema";
 import type { Change, ChangeSet } from "../data/diff";
 import {
   STAT_KEYS,
@@ -166,17 +166,26 @@ export function ResourcesPanel(p: PanelProps) {
 
 export function EquipmentPanel(p: PanelProps) {
   const { equipment } = p.snap;
-  const anyFilled = EQUIPMENT_SLOTS.some((s) => equipment[s]);
+  // Slots are display groupings, not capacity limits, so a slot may hold several
+  // items (a shirt layered under a cloak; two rings). Each slot renders one tile
+  // and stacks whatever it holds inside it.
+  const bySlot = new Map<EquipmentSlot, typeof equipment>();
+  for (const it of equipment) {
+    const list = bySlot.get(it.slot);
+    if (list) list.push(it);
+    else bySlot.set(it.slot, [it]);
+  }
+
   return (
     <Panel title="Equipment">
-      {!anyFilled ? (
+      {equipment.length === 0 ? (
         <p className="empty">Nothing equipped.</p>
       ) : (
         <div className="slots">
           {EQUIPMENT_SLOTS.map((slot) => {
-            const item = equipment[slot];
+            const items = bySlot.get(slot) ?? [];
             const label = slot[0].toUpperCase() + slot.slice(1);
-            if (!item) {
+            if (items.length === 0) {
               return (
                 <div key={slot} className="slot">
                   <div className="slabel">{label}</div>
@@ -185,12 +194,20 @@ export function EquipmentPanel(p: PanelProps) {
               );
             }
             return (
-              <WithItemTip key={slot} item={item} className="slot filled">
+              <div key={slot} className="slot filled">
                 <div className="slabel">{label}</div>
-                <div className="sitem">
-                  <ItemIcon item={item} />
+                <div className="sitem-stack">
+                  {items.map((it) => (
+                    <WithItemTip
+                      key={it.id}
+                      item={it}
+                      className={`stack-item${added(p, "equipment", it.id) ? " added" : ""}`}
+                    >
+                      <ItemIcon item={it} />
+                    </WithItemTip>
+                  ))}
                 </div>
-              </WithItemTip>
+              </div>
             );
           })}
         </div>

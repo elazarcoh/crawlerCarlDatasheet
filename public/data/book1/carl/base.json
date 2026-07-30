@@ -21,31 +21,29 @@
     "hp": { "cur": null, "max": null },
     "mana": { "cur": null, "max": null }
   },
-  "equipment": {
-    "head": null,
-    "body": {
+  "equipment": [
+    {
       "id": "leather-jacket",
       "name": "Leather Jacket",
       "rarity": "common",
-      "description": "Carl's heavy civilian leather jacket, grabbed on his way out the door to fetch the cat. Its forearm later carries the branded Goblin Pass."
+      "description": "Carl's heavy civilian leather jacket, grabbed on his way out the door to fetch the cat. Its forearm later carries the branded Goblin Pass.",
+      "slot": "body"
     },
-    "underwear": {
+    {
       "id": "boxers",
       "name": "Boxer Shorts",
       "rarity": "common",
-      "description": "The boxer shorts Carl was sleeping in when the world ended — his only real clothing for the entire dungeon. He never does find pants."
+      "description": "The boxer shorts Carl was sleeping in when the world ended — his only real clothing for the entire dungeon. He never does find pants.",
+      "slot": "underwear"
     },
-    "hands": null,
-    "feet": {
+    {
       "id": "pink-crocs",
       "name": "Pink Crocs",
       "rarity": "common",
-      "description": "Beatrice's pink Crocs sandals, a size too small; Carl jammed his bare feet into them to run outside after Donut."
-    },
-    "weapon": null,
-    "offhand": null,
-    "accessory": null
-  },
+      "description": "Beatrice's pink Crocs sandals, a size too small; Carl jammed his bare feet into them to run outside after Donut.",
+      "slot": "feet"
+    }
+  ],
   "inventory": [
     {
       "id": "marlboro-reds",

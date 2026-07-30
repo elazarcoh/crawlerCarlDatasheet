@@ -433,6 +433,21 @@ select,
 .slot.filled {
   cursor: help;
 }
+/* Accessories are one slot holding several worn items, so their icons stack
+   inside a single tile rather than each claiming a tile of its own. */
+.slot .sitem-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.slot .sitem-stack .stack-item {
+  cursor: help;
+}
+.slot .sitem-stack .item-icon {
+  width: 36px;
+  height: 36px;
+}
 
 /* item lists */
 .items {

@@ -1,10 +1,4 @@
-import {
-  EQUIPMENT_SLOTS,
-  type Item,
-  type Skill,
-  type Snapshot,
-  type StatBonuses,
-} from "../schema";
+import type { Item, Skill, Snapshot, StatBonuses } from "../schema";
 
 /**
  * Derived views over a snapshot: effective stats (base + equipped item bonuses,
@@ -36,8 +30,9 @@ export interface StatBreakdown {
   total: number | null;
 }
 
+/** Everything currently worn. `equipment` is already a flat list. */
 function equippedItems(snap: Snapshot): Item[] {
-  return EQUIPMENT_SLOTS.map((s) => snap.equipment[s]).filter((i): i is Item => !!i);
+  return snap.equipment;
 }
 
 export function effectiveStats(snap: Snapshot): Record<StatKey, StatBreakdown> {

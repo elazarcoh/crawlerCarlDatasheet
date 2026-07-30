@@ -21,15 +21,7 @@
     "hp": { "cur": null, "max": null },
     "mana": { "cur": null, "max": null }
   },
-  "equipment": {
-    "head": null,
-    "body": null,
-    "hands": null,
-    "feet": null,
-    "weapon": null,
-    "offhand": null,
-    "accessory": null
-  },
+  "equipment": [],
   "inventory": [],
   "skills": [],
   "effects": [],

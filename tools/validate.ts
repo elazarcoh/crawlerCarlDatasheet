@@ -14,7 +14,7 @@ import { BooksIndex, Delta, Manifest, Snapshot } from "../src/schema/index.ts";
 const REPO = fileURLToPath(new URL("..", import.meta.url));
 const DATA = join(REPO, "public", "data");
 
-const LIST_FIELDS = ["inventory", "skills", "effects", "achievements", "contacts"] as const;
+const LIST_FIELDS = ["equipment", "inventory", "skills", "effects", "achievements", "contacts"] as const;
 
 const errors: string[] = [];
 const err = (m: string) => errors.push(m);

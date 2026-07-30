@@ -69,11 +69,11 @@ function collectItems(book: string): Map<string, any> {
   for (const c of readManifest(book).characters) {
     const base = readJson<any>(join(DATA, book, c.id, "base.json"));
     (base?.inventory ?? []).forEach(add);
-    Object.values(base?.equipment ?? {}).forEach((v) => v && add(v));
+    (base?.equipment ?? []).forEach(add);
     for (const df of deltaFiles(book, c.id)) {
       const d = readJson<any>(df);
       (d?.inventory?.add ?? []).forEach(add);
-      Object.values(d?.set?.equipment ?? {}).forEach((v) => v && add(v));
+      (d?.equipment?.add ?? []).forEach(add);
     }
   }
   return items;
