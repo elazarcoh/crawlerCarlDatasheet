@@ -48,7 +48,18 @@ Rules:
     "inventory":    { "add": [Item], "remove": ["id"], "update": [{ "id": "...", ... }] },
     "skills":       { "add": [{ "id","name","level"?,"description"? }], "remove": [...], "update": [...] },
     "effects":      { "add": [{ "id","name","kind":"buff|debuff|neutral","description"? }], ... },
-    "achievements": { "add": [{ "id","name","reward"?,"description"? }], ... },
+    "achievements": { "add": [{ "id","name","description"?,"reward"?,"note"? }], ... },
+                   // "name"/"description"/"reward" are the system's VERBATIM words
+                   // (the AI's snark is the content — never flatten a reward to
+                   // "None.", the joke is usually in it). Omit "description" when the
+                   // book only mentions the achievement without showing the box, and
+                   // put your own summary in "note" — which is the only field that is
+                   // yours rather than the book's.
+                   // If the chapter awards an achievement without showing the box, add it
+                   // as { "name": "(Unread notification)", "note": "Earned for … Queued
+                   // unread: …" } and let the chapter where it is actually read fill the
+                   // wording in with an "update" on the same id. Never put a later
+                   // chapter's text in an earlier chapter's delta.
     "contacts":     { "add": [{ "id","name","relation","note"? }], ... },
     "sources": [ { "field": "stats", "quote": "<verbatim book quote>" } ]
   }

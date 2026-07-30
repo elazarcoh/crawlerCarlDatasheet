@@ -77,11 +77,22 @@ export const Effect = z.object({
 });
 export type Effect = z.infer<typeof Effect>;
 
+/**
+ * An achievement notification, in the three parts the book displays it in:
+ * name, then the AI's commentary on it, then the reward. `description` and
+ * `reward` are therefore the system's **verbatim** words — the snark is the
+ * content, and "Reward: None." is frequently a joke rather than a nothing
+ * ("None! Haha. You are so dead."). Where the prose only summarises an
+ * achievement instead of showing the box, `description` is absent rather than
+ * paraphrased. `note` is ours: the surrounding fact the AI leaves out (which
+ * mob, which trap), never book text.
+ */
 export const Achievement = z.object({
   id: z.string(),
   name: z.string(),
   reward: z.string().optional(),
   description: z.string().optional(),
+  note: z.string().optional(),
 });
 export type Achievement = z.infer<typeof Achievement>;
 

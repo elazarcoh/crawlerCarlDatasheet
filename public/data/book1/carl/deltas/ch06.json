@@ -113,20 +113,22 @@
       {
         "id": "loot",
         "name": "Loot!",
-        "reward": "None. (You're now a handsome son of a bitch.)",
-        "description": "Wore something found in the dungeon for the first time."
+        "description": "You’re wearing something you found in the dungeon.",
+        "reward": "You’re now a handsome son of a bitch. That’s reward enough.",
+        "note": "Triggered by putting on the trollskin shirt and the nightgaunt cloak."
       },
       {
         "id": "oooh-magic",
         "name": "Oooh, Magic!",
-        "reward": "You've received a Bronze Adventurer Box!",
-        "description": "Wore magical gear for the first time."
+        "description": "You’re wearing magical gear for the first time! You’re a wizard, Crawler!",
+        "reward": "You’ve received a Bronze Adventurer Box!",
+        "note": "His first magical gear: the trollskin shirt and the nightgaunt cloak."
       },
       {
         "id": "jewelry-achievement",
         "name": "(Unnamed jewelry achievement)",
         "reward": "None.",
-        "description": "A snarky achievement for putting on jewelry (the toe ring); the exact name is not shown in the text."
+        "note": "A snarky achievement for putting on the toe ring. The book records that he got one but never shows the notification, so its name and wording are unknown."
       }
     ]
   },

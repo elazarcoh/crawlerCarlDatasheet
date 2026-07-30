@@ -298,15 +298,20 @@ export function AchievementsPanel(p: PanelProps) {
         mode === "compact" ? (
           <div
             className={`achv-chip${added(p, "achievements", a.id) ? " added" : ""}`}
-            title={[a.description, a.reward ? `Reward: ${a.reward}` : ""].filter(Boolean).join("\n")}
+            title={[a.description, a.reward ? `Reward: ${a.reward}` : "", a.note]
+              .filter(Boolean)
+              .join("\n")}
           >
             🏆 {a.name}
           </div>
         ) : (
+          // Same three parts, in the same order, as the notification box in the
+          // book: name, the AI's commentary, then the reward. `note` is ours.
           <div className="achv">
             <div className="name">🏆 {a.name}</div>
-            {a.description && <div className="reward">{a.description}</div>}
+            {a.description && <div className="sys">{a.description}</div>}
             {a.reward && <div className="reward">Reward: {a.reward}</div>}
+            {a.note && <div className="note">{a.note}</div>}
           </div>
         )
       }
