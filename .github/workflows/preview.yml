@@ -106,10 +106,14 @@ jobs:
           jq -e 'length > 0' build.json > /dev/null \
             || echo "- nothing changed" >> "$GITHUB_STEP_SUMMARY"
 
+      # `ref: main` matters: without it this checks out `ci`, which is an orphan
+      # with no package-lock.json, and setup-node's cache path fails to resolve.
+      # Individual target SHAs are checked out from this clone further down.
       - name: Check out the source (all fork branches, LFS left as pointers)
         if: steps.plan.outputs.count != '0'
         uses: actions/checkout@v4
         with:
+          ref: main
           path: src
           fetch-depth: 0
           lfs: false
@@ -128,7 +132,7 @@ jobs:
       - uses: actions/setup-node@v4
         if: steps.plan.outputs.count != '0'
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: src/package-lock.json
 
