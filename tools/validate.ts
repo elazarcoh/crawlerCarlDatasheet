@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { BooksIndex, Delta, Manifest, Snapshot } from "../src/schema/index.ts";
 
 /**
@@ -8,7 +9,9 @@ import { BooksIndex, Delta, Manifest, Snapshot } from "../src/schema/index.ts";
  * exist in the state accumulated so far. Exits non-zero on the first problem.
  */
 
-const REPO = join(new URL("..", import.meta.url).pathname);
+// fileURLToPath (not URL.pathname) — on Windows .pathname yields "/D:/repo",
+// which join() turns into the invalid "\D:\repo".
+const REPO = fileURLToPath(new URL("..", import.meta.url));
 const DATA = join(REPO, "public", "data");
 
 const LIST_FIELDS = ["inventory", "skills", "effects", "achievements", "contacts"] as const;
