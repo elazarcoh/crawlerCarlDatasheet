@@ -16,17 +16,17 @@
       {
         "id": "cast-first-spell",
         "name": "Cast your first spell",
-        "description": "Donut cast Magic Missile for the first time during the Bad Llama fight."
+        "note": "Donut cast Magic Missile for the first time during the Bad Llama fight. Only Carl's summary reaches us, so the system's own wording is unknown."
       },
       {
         "id": "first-kill",
         "name": "Killed a mob",
-        "description": "Donut's first mob kill — the Level 3 Bad Llama, to which she dealt 71% of the damage."
+        "note": "Donut's first mob kill — the Level 3 Bad Llama, to which she dealt 71% of the damage. The same system achievement Carl earned in ch02, but her notification is never shown."
       },
       {
         "id": "killed-higher-level",
         "name": "Killed a mob a higher level than yourself",
-        "description": "Donut (Level 1, then 2) helped kill the higher-level (Level 3) Bad Llama."
+        "note": "Donut (Level 1, then 2) helped kill the higher-level (Level 3) Bad Llama. The same system achievement Carl earned in ch03, but her notification is never shown."
       }
     ]
   },

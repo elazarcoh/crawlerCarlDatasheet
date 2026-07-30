@@ -56,6 +56,16 @@ The single most important convention, and it is easy to get off by one:
 So a sword looted during chapter 4 goes in `deltas/ch04.json` and first shows up when the
 user selects chapter 5. That is intended, not a bug.
 
+**Earned in one chapter, revealed in another → placeholder, then `update`.** When the
+character gains something before learning what it says, the wording belongs in the delta for
+the chapter where it is *read*, never the one where it is earned. Carl's inventory is
+inactive until ch05, so eight achievements earned in ch02–03 are added there as
+`"name": "(Unread notification)"` with an explanatory `note`, and `deltas/ch05.json` fills
+in the real name/description/reward with an `achievements.update` on the same ids. The
+composed view then tells the truth at every chapter, and since `diff.ts` reports list
+updates, the reveal reads as its own event in the changes box. `validate.ts` rejects an
+`update` for an id that was never added, so the two halves cannot silently drift apart.
+
 `src/schema/index.ts` is the single source of truth: zod schemas produce both the runtime
 validators and the TypeScript types (`z.infer`). `Delta` and `DeltaSet` are `.strict()`, so
 an unknown key is a validation error, not a silent no-op.

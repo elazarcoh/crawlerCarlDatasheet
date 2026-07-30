@@ -381,9 +381,24 @@ select,
   color: var(--ink);
   font-size: 14px;
 }
+/* the AI's own words about the achievement — italic, so it reads as the
+   system talking rather than as our summary */
+.achv .sys {
+  font-size: 12.5px;
+  color: var(--ink);
+  font-style: italic;
+  margin: 3px 0;
+}
 .achv .reward {
   font-size: 12.5px;
   color: var(--ink-dim);
+}
+/* our context, not book text: quieter than both */
+.achv .note {
+  font-size: 11.5px;
+  color: var(--ink-dim);
+  opacity: 0.8;
+  margin-top: 3px;
 }
 .achv-chip {
   border: 1px solid var(--edge-dark);

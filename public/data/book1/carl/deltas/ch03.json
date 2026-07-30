@@ -15,16 +15,15 @@
   },
   "achievements": {
     "add": [
-      { "id": "killed-higher-level-mob", "name": "You've Killed a Mob a Higher Level Than Yourself!", "reward": "You've received a Bronze Adventurer Box!", "description": "Killed the Level-3 Goblin Engineer while himself a lower level." },
-      { "id": "podophilia", "name": "Podophilia!", "reward": "You've received a Gold Shoe Box!", "description": "Used his bare feet to crush and kill an opponent (leaping onto the Goblin Engineer)." },
-      { "id": "boom", "name": "Boom!", "reward": "You've received a Silver Goblin Box!", "description": "Caused a wall-shaking explosion within the dungeon (the Murder Dozer's boiler breach)." },
-      { "id": "level-up-baby", "name": "Level-Up, Baby!", "reward": "None. (Leveling up is your job.)", "description": "Earned enough experience to gain a level, reaching Level 2 and gaining 3 stat points." }
+      { "id": "killed-higher-level-mob", "name": "(Unread notification)", "note": "Earned for killing the Level 3 Goblin Engineer while a lower level himself. Queued unread: his inventory is not yet active, so he cannot open the notification." },
+      { "id": "podophilia", "name": "(Unread notification)", "note": "Earned by leaping onto the Goblin Engineer and crushing him barefoot. Queued unread: his inventory is not yet active, so he cannot open the notification." },
+      { "id": "boom", "name": "(Unread notification)", "note": "Earned when the Murder Dozer's boiler breach shook the tunnel. Queued unread: his inventory is not yet active, so he cannot open the notification." },
+      { "id": "level-up-baby", "name": "(Unread notification)", "note": "Earned by reaching Level 2. Queued unread: his inventory is not yet active, so he cannot open the notification." }
     ]
   },
   "sources": [
     { "field": "level", "quote": "Level Up! You are now level 2. Three stat points gained." },
     { "field": "skills", "quote": "You’ve gained a skill level! Pugilism Level 4. The art of beating the shit out of your opponents with closed fists. Each level of this skill increases your bare-knuckle damage by 25%." },
-    { "field": "achievements", "quote": "New achievement! Podophilia! You’ve used your bare feet to crush and kill an opponent! ... Reward: You’ve received a Gold Shoe Box! New achievement! Boom! You’ve caused a wall-shaking explosion within the dungeon! ... Reward: You’ve received a Silver Goblin Box!" },
     { "field": "misc.undistributedStatPoints", "quote": "I received three stat points every time I leveled up, but I couldn’t distribute them until I picked a race and class. And I couldn’t do that until I reached the third floor down." }
   ]
 }
