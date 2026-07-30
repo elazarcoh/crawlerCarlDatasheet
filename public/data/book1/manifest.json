@@ -12,7 +12,8 @@
     { "index": 5, "label": "Chapter 5", "source": "OEBPS/Text/part0009.xhtml" },
     { "index": 6, "label": "Chapter 6", "source": "OEBPS/Text/part0010.xhtml" },
     { "index": 7, "label": "Chapter 7", "source": "OEBPS/Text/part0011.xhtml" },
-    { "index": 8, "label": "Chapter 8", "source": "OEBPS/Text/part0012.xhtml" }
+    { "index": 8, "label": "Chapter 8", "source": "OEBPS/Text/part0012.xhtml" },
+    { "index": 9, "label": "Chapter 9", "source": "text/part0013.html" }
   ],
   "schemaVersion": 1
 }

@@ -18,5 +18,10 @@
     "id": "scene-guild-hall",
     "label": "Tutorial Guild Hall",
     "description": "The interior of a shabby tutorial guild hall safe room on dungeon Floor 1: a worn wooden front desk and counter, mismatched lamps, cluttered shelves, warm lamplight, cosy but run-down"
+  },
+  {
+    "id": "scene-safe-room",
+    "label": "Floor 1 Safe Room",
+    "description": "The interior of an intact 1990s fast food restaurant transplanted underground: white and blue livery instead of red and yellow, empty moulded booths, a service counter with three glowing information screens overhead where the menu should be, a row of self-serve soda machines, a huge children's playground with a massive slide, plastic tunnel system and ball pit, signage in an unfamiliar Slavic language, and large windows showing nothing but solid rock beyond, no characters"
   }
 ]
