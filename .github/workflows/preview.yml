@@ -1,0 +1,201 @@
+name: Publish PR previews
+
+# Builds a static preview of every open pull request from this fork, plus an
+# upstream `main` baseline, and publishes them to gh-pages -> GitHub Pages.
+#
+# Why this workflow lives on an orphan `ci` branch that is the fork's default
+# branch, and not on `main`:
+#   * For a `push` trigger, Actions reads the workflow from the branch that was
+#     pushed -- so a push-triggered version would have to exist on every feature
+#     branch, and would land in every pull request sent upstream.
+#   * `schedule` only ever runs the copy on the DEFAULT branch. Making this
+#     orphan branch the default gives us cron without putting a workflow file
+#     anywhere near the code branches. Nothing descends from `ci`, so it cannot
+#     leak into a PR.
+# The target branches are therefore checked out BY NAME here, never by having
+# this file present on them.
+
+on:
+  schedule:
+    # Every 10 minutes. Runs where nothing changed exit in ~15s without
+    # checking out the source at all, so this is cheap to leave enabled.
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Rebuild every preview even if its head SHA is unchanged"
+        type: boolean
+        default: false
+  push:
+    branches: [ci] # re-publish when this workflow or the index template changes
+
+permissions:
+  contents: write
+
+# Never let two runs push to gh-pages at once; queue instead of cancelling, so
+# a run that has already built something always gets to publish it.
+concurrency:
+  group: publish-previews
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the ci branch (this workflow + the index generator)
+        uses: actions/checkout@v4
+        with:
+          path: ci
+
+      - name: Check out gh-pages (the published site)
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+
+      - name: Work out what needs building
+        id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          # A push to `ci` only needs the index regenerated (that step always
+          # runs), not every preview rebuilt.
+          FORCE: ${{ inputs.force }}
+        run: |
+          set -euo pipefail
+          UPSTREAM=$(gh api "repos/$GITHUB_REPOSITORY" --jq '.parent.full_name // .full_name')
+          DEFAULT=$(gh api "repos/$UPSTREAM" --jq '.default_branch')
+          echo "upstream=$UPSTREAM ($DEFAULT)"
+          echo "upstream=$UPSTREAM" >> "$GITHUB_OUTPUT"
+          echo "upstream_branch=$DEFAULT" >> "$GITHUB_OUTPUT"
+
+          # Open PRs whose head lives in THIS fork. PRs are filed against the
+          # upstream repo, so they have to be read from there.
+          # Piped to jq rather than using `gh api --jq`, which takes no --arg.
+          gh api "repos/$UPSTREAM/pulls?state=open&per_page=100" \
+            | jq --arg fork "$GITHUB_REPOSITORY" '
+              [ .[]
+                | select(.head.repo.full_name == $fork)
+                | { name: ("pr-" + (.number|tostring)),
+                    ref: .head.ref,
+                    sha: .head.sha,
+                    draft: .draft,
+                    title: ("PR #" + (.number|tostring) + " — " + .title) } ]' \
+            > targets.json
+
+          MAIN_SHA=$(gh api "repos/$UPSTREAM/commits/$DEFAULT" --jq '.sha')
+          jq --arg sha "$MAIN_SHA" --arg br "$DEFAULT" \
+            '. + [{ name: "main", ref: $br, sha: $sha, draft: false,
+                    title: ($br + " — upstream baseline") }]' \
+            targets.json > all.json
+
+          [ -f site/previews.json ] || echo '{}' > site/previews.json
+          if [ "$FORCE" = "true" ]; then
+            cp all.json build.json
+          else
+            jq --slurpfile prev site/previews.json \
+              '[ .[] | select(($prev[0][.name].sha // "") != .sha) ]' \
+              all.json > build.json
+          fi
+
+          echo "all=$(jq -c . all.json)" >> "$GITHUB_OUTPUT"
+          echo "build=$(jq -c . build.json)" >> "$GITHUB_OUTPUT"
+          echo "count=$(jq 'length' build.json)" >> "$GITHUB_OUTPUT"
+          echo "### Preview plan" >> "$GITHUB_STEP_SUMMARY"
+          jq -r '.[] | "- rebuild `\(.name)` (\(.ref) @ \(.sha[0:7]))"' build.json \
+            >> "$GITHUB_STEP_SUMMARY"
+          jq -e 'length > 0' build.json > /dev/null \
+            || echo "- nothing changed" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Check out the source (all fork branches, LFS left as pointers)
+        if: steps.plan.outputs.count != '0'
+        uses: actions/checkout@v4
+        with:
+          path: src
+          fetch-depth: 0
+          lfs: false
+
+      # Keyed on the art pointer files, which only change when the art does,
+      # so repeat runs download no LFS objects at all. Pages cannot serve LFS
+      # pointers, so the real bytes have to be in the build.
+      - name: Restore Git LFS object cache
+        if: steps.plan.outputs.count != '0'
+        uses: actions/cache@v4
+        with:
+          path: src/.git/lfs
+          key: lfs-${{ hashFiles('src/public/art/**/*.png', 'src/.gitattributes') }}
+          restore-keys: lfs-
+
+      - uses: actions/setup-node@v4
+        if: steps.plan.outputs.count != '0'
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: src/package-lock.json
+
+      - name: Build each changed preview
+        if: steps.plan.outputs.count != '0'
+        env:
+          BUILD: ${{ steps.plan.outputs.build }}
+          UPSTREAM: ${{ steps.plan.outputs.upstream }}
+          UPSTREAM_BRANCH: ${{ steps.plan.outputs.upstream_branch }}
+        run: |
+          set -euo pipefail
+          git -C src remote add upstream "https://github.com/$UPSTREAM.git"
+          git -C src fetch --no-tags --quiet upstream "$UPSTREAM_BRANCH"
+
+          LAST_LOCK=""
+          echo "$BUILD" | jq -c '.[]' | while read -r item; do
+            NAME=$(jq -r '.name' <<<"$item")
+            SHA=$(jq -r '.sha' <<<"$item")
+            echo "::group::$NAME ($SHA)"
+            if ! git -C src cat-file -e "$SHA^{commit}" 2>/dev/null; then
+              echo "::warning::$NAME head $SHA is not in this fork — skipping"
+              echo "::endgroup::"; continue
+            fi
+            git -C src checkout --force --detach "$SHA"
+            # Objects already in .git/lfs are smudged locally, no download.
+            git -C src lfs install --local
+            git -C src lfs pull
+
+            LOCK=$(sha1sum src/package-lock.json | cut -d' ' -f1)
+            if [ "$LOCK" != "$LAST_LOCK" ]; then
+              (cd src && npm ci --no-audit --no-fund)
+              LAST_LOCK=$LOCK
+            fi
+
+            (cd src && npm run build)
+            # Guard against publishing LFS pointers as if they were images.
+            if find src/dist -name '*.png' -size -1k | grep -q .; then
+              echo "::error::LFS smudge failed — dist contains pointer files"; exit 1
+            fi
+
+            rm -rf "site/previews/$NAME"
+            mkdir -p site/previews
+            cp -r src/dist "site/previews/$NAME"
+            echo "::endgroup::"
+          done
+
+      - name: Prune closed PRs, record state, regenerate the index
+        env:
+          ALL: ${{ steps.plan.outputs.all }}
+        run: |
+          set -euo pipefail
+          mkdir -p site/previews
+          python3 ci/update_previews.py site "$ALL"
+          python3 ci/make_index.py site
+
+      - name: Publish
+        run: |
+          set -euo pipefail
+          cd site
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --quiet --cached; then
+            echo "site unchanged — nothing to publish"
+            exit 0
+          fi
+          git commit -m "Publish previews ($(date -u +%Y-%m-%dT%H:%MZ))"
+          git push
+          echo "published: https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/" \
+            >> "$GITHUB_STEP_SUMMARY"
