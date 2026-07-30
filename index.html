@@ -17,7 +17,7 @@
   h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: .2px; }
   p.sub { margin: 0 0 28px; color: #a89e88; font-size: 14px; }
   .card {
-    display: grid; grid-template-columns: auto 1fr; gap: 2px 14px;
+    display: grid; grid-template-columns: auto 1fr; gap: 3px 14px;
     align-items: baseline; text-decoration: none; color: inherit;
     border: 1px solid #3a3226; border-left: 3px solid #c8a44a; border-radius: 8px;
     background: #1d1913; padding: 14px 16px; margin-bottom: 12px;
@@ -29,7 +29,16 @@
     white-space: nowrap; align-self: center;
   }
   .title { font-weight: 600; }
-  .meta { font-size: 12.5px; color: #9a9080; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .draft {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .5px; color: #14110d; background: #8d8676;
+    border-radius: 3px; padding: 1px 6px; margin-left: 8px; vertical-align: 1px;
+  }
+  .meta {
+    font-size: 12.5px; color: #9a9080;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    overflow-wrap: anywhere;
+  }
   footer { margin-top: 26px; font-size: 12.5px; color: #7d7466; }
   @media (prefers-color-scheme: light) {
     body { background: #f6f1e4; color: #241f16; }
@@ -42,18 +51,23 @@
 <body>
   <main>
     <h1>Dungeon Crawler Carl — statsheet previews</h1>
-    <p class="sub">Built from branches on this fork, for reviewing a pull request before it is merged.</p>
+    <p class="sub">One static build per open pull request, for reviewing it before it is merged. Rebuilt automatically when a branch moves; previews for closed pull requests are removed.</p>
       <a class="card" href="previews/main/">
         <span class="badge">baseline</span>
-        <span class="title">main (merged: Windows fix, flat equipment, AI achievement voice)</span>
-        <span class="meta">main @ e3fe99b · built 2026-07-30</span>
+        <span class="title">main — upstream baseline</span>
+        <span class="meta">main @ 815a4f6 · built 2026-07-30</span>
       </a>
-      <a class="card" href="previews/pr-3/">
-        <span class="badge">PR #3</span>
-        <span class="title">PR #3 — Enhanced Growth on Donut's level 2 (Str 12 / Cha 27)</span>
-        <span class="meta">fix/donut-enhanced-growth-ch08 @ 0f97311 · built 2026-07-30</span>
+      <a class="card" href="previews/pr-4/">
+        <span class="badge">PR #4</span>
+        <span class="title">PR #4 — Add book 1 chapter 10 (safe-room rest and the Scatterer grind)<span class="draft">draft</span></span>
+        <span class="meta">data/book1-ch10 @ 541ed74 · built 2026-07-30</span>
       </a>
-    <footer>Each preview is a full static build. Pick a chapter, then a character tab.</footer>
+      <a class="card" href="previews/pr-2/">
+        <span class="badge">PR #2</span>
+        <span class="title">PR #2 — Add book 1 chapter 9 (the floor-1 safe room)<span class="draft">draft</span></span>
+        <span class="meta">data/book1-ch09 @ cb65ad5 · built 2026-07-30</span>
+      </a>
+    <footer>Pick a chapter, then a character tab. Compare against the baseline to see what a PR changes.</footer>
   </main>
 </body>
 </html>

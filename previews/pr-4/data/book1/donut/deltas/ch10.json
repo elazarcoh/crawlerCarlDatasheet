@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "chapterIndex": 10,
+  "notes": "Donut sleeps on Carl's neck, eats three plates of salmon pâté, then leads the Scatterer grind out in the Floor 1 tunnels: three magic missiles halve a Level 4 Brood Guardian, and the party discovers a missile to the face stuns a lunging roach and sometimes inflicts Sepsis (from her crown), sending it running until it collapses. She reaches Level 5, and her Enhanced Growth buff takes her Strength to 15 — the book's one stated total. Applying the same stated +1 Str / +1 Int / +2 Cha per level rule, her base Intelligence is 15 (21 with the crown and talisman, so 21 mana) and her Charisma 33; these two are derived from the quoted buff rule rather than printed in this chapter. She also reveals two claw skills, Slice Attack and Back Claw, both at level 4, and her new collar talisman jingles audibly when she sneaks.",
+  "set": {
+    "level": 5,
+    "location": "Floor 1 tunnels (outside the safe room, at the door to the Scatterer nest)",
+    "scene": "scene-floor1-tunnels",
+    "stats": {
+      "strength": 15,
+      "intelligence": 15,
+      "charisma": 33
+    },
+    "resources": {
+      "mana": { "cur": 21, "max": 21 }
+    }
+  },
+  "skills": {
+    "add": [
+      {
+        "id": "slice-attack",
+        "name": "Slice Attack",
+        "level": 4,
+        "description": "A claw-based slashing attack. Donut reveals it at level four when Carl asks whether she has any slashing skill, and he tells her to wade in with it once her mana runs out — her Strength is far higher than his."
+      },
+      {
+        "id": "back-claw",
+        "name": "Back Claw",
+        "level": 4,
+        "description": "A second claw attack, also at level four when Donut first mentions it."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "field": "level",
+      "quote": "Both Donut and I were level 5 when we got to the door."
+    },
+    {
+      "field": "stats.strength",
+      "quote": "Because of Donut’s special buff, she was growing with each level up. Her strength was at 15. Now when she jumped onto me, I could feel the strength of her claws on my shoulder, even through the leather jacket and trollskin shirt."
+    },
+    {
+      "field": "stats",
+      "quote": "Enhanced Growth. After an initial boost to four random stats, all additional levels will automatically grant +1 to Strength and Intelligence. Charisma will gain +2 per level. (Ch7 buff description — Intelligence 15 and Charisma 33 at Level 5 are computed from this rule off the Level 1 sheet of Str 11 / Int 11 / Cha 25; the Strength total of 15 stated in this chapter confirms the arithmetic.)"
+    },
+    {
+      "field": "resources.mana",
+      "quote": "I could see she currently had a 17 in intelligence, giving her 17 mana points. (Ch8 — mana equals total Intelligence, so base 15 plus the Crown's +5 and the Talisman's +1 gives 21.)"
+    },
+    {
+      "field": "skills",
+      "quote": "“Of course I do,” Donut said. “My Slice Attack is at level four, and my Back Claw is also level four.”"
+    },
+    {
+      "field": "location",
+      "quote": "Soon thereafter, we left to hunt for some bugs. … We crept toward it, going as silently as possible. Donut’s little bell jingled with each step."
+    }
+  ]
+}

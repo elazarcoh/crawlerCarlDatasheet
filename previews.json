@@ -1,4 +1,23 @@
 {
-  "main": { "title": "main (merged: Windows fix, flat equipment, AI achievement voice)", "ref": "main @ e3fe99b", "built": "2026-07-30" },
-  "pr-3": { "title": "PR #3 — Enhanced Growth on Donut's level 2 (Str 12 / Cha 27)", "ref": "fix/donut-enhanced-growth-ch08 @ 0f97311", "built": "2026-07-30" }
+  "main": {
+    "built": "2026-07-30",
+    "draft": false,
+    "ref": "main @ 815a4f6",
+    "sha": "815a4f63f55f3a36b6d152bcd1a1e56a33da07d6",
+    "title": "main — upstream baseline"
+  },
+  "pr-2": {
+    "built": "2026-07-30",
+    "draft": true,
+    "ref": "data/book1-ch09 @ cb65ad5",
+    "sha": "cb65ad530cff2076d8a385af0c68458e56bfa895",
+    "title": "PR #2 — Add book 1 chapter 9 (the floor-1 safe room)"
+  },
+  "pr-4": {
+    "built": "2026-07-30",
+    "draft": true,
+    "ref": "data/book1-ch10 @ 541ed74",
+    "sha": "541ed748d35067def8651feb2bb1d582fed7d543",
+    "title": "PR #4 — Add book 1 chapter 10 (safe-room rest and the Scatterer grind)"
+  }
 }

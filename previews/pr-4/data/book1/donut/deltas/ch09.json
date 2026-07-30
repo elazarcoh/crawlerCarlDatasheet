@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "chapterIndex": 9,
+  "notes": "In the safe room Donut opens a Gold Magic Item Box (for being one of the first 100 crawlers to reach Magic Missile level 3): 25 mana potions and the Talisman of the Slate Butterfly, a collar charm that takes her Light on Your Feet skill from 3 to 7, adds +1 Intelligence and makes winged fairies non-hostile. Tally the caretaker treats her as royalty. Mana rises 17 -> 18 with the talisman's +1 Intelligence, following the rule ch08 states explicitly (mana max equals effective Intelligence); the chapter does not restate the total.",
+  "set": {
+    "scene": "scene-safe-room",
+    "resources": {
+      "mana": {
+        "cur": 18,
+        "max": 18
+      }
+    }
+  },
+  "equipment": {
+    "add": [
+      {
+        "id": "talisman-slate-butterfly",
+        "name": "Talisman of the Slate Butterfly",
+        "rarity": "unknown",
+        "effects": "+4 to the Light on Your Feet skill; +1 Intelligence; winged fairies will no longer be automatically hostile toward you.",
+        "description": "A little silver butterfly charm with its own ring so it attaches straight to Donut's collar; it jingles when it moves. \"Those who remember and commemorate the sad tale of the Slate Butterfly are given a boon by the fairies of the world.\" From a Gold Magic Item Box. Carl points out that a bell round a cat's neck is there to warn the birds and squirrels; Donut wears it anyway because it's adorable.",
+        "statBonuses": {
+          "intelligence": 1
+        },
+        "grants": [
+          {
+            "skill": "light-on-your-feet",
+            "name": "Light on Your Feet",
+            "level": 4
+          }
+        ],
+        "slot": "accessory"
+      }
+    ]
+  },
+  "inventory": {
+    "add": [
+      {
+        "id": "potion-mana",
+        "name": "Potion of Mana Restoration",
+        "rarity": "common",
+        "qty": 25,
+        "description": "Twenty-five mana-restoration potions from the Gold Magic Item Box."
+      }
+    ]
+  },
+  "skills": {
+    "add": [
+      {
+        "id": "light-on-your-feet",
+        "name": "Light on Your Feet",
+        "level": 3,
+        "description": "Lets her pounce higher and farther. She was already a three in the skill when the Talisman of the Slate Butterfly took it to seven — enough to leap twice as high as before, to the top of the restaurant playground's plastic tubes."
+      }
+    ]
+  },
+  "effects": {
+    "add": [
+      {
+        "id": "fairy-neutrality",
+        "name": "Fairy Neutrality",
+        "kind": "buff",
+        "description": "From the Talisman of the Slate Butterfly: winged fairies will no longer be automatically hostile toward Donut."
+      }
+    ]
+  },
+  "achievements": {
+    "add": [
+      {
+        "id": "magic-missile-top-100",
+        "name": "(Unnamed Magic Missile achievement)",
+        "reward": "You've received a Gold Magic Item Box!",
+        "description": "One of the first 100 crawlers to level Magic Missile up to level three. The text records the box reward but not the achievement's name."
+      }
+    ]
+  },
+  "contacts": {
+    "add": [
+      {
+        "id": "tally",
+        "name": "Tally",
+        "relation": "Bopca Protector — safe-room caretaker (NPC)",
+        "note": "Level 63 Non-Combatant NPC caretaker of the floor-1 safe room. Addresses Donut as 'Your Royal Highness' without being asked, gave her yogurt on arrival and special-ordered a fresh salmon, properly prepared and garnished, for when she wakes. Donut: 'It's not my fault he sees me as royalty.'"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "field": "achievements",
+      "quote": "She had several boxes as well, including a gold magic item box she'd received for being one of the first 100 crawlers to level Magic Missile up to level three."
+    },
+    {
+      "field": "inventory",
+      "quote": "In the box was 25 potions of mana restoration and a collar charm. The charm was a little silver butterfly."
+    },
+    {
+      "field": "equipment.accessory",
+      "quote": "Talisman of the Slate Butterfly […] Adds +4 to the Light on Your Feet skill. Adds +1 to Intelligence. Winged fairies will no longer be automatically hostile toward you."
+    },
+    {
+      "field": "skills",
+      "quote": "The Light on Your Feet skill simply meant she'd be able to pounce higher and farther. She was already a three in the skill when she'd received it, so the charm made her a seven."
+    },
+    {
+      "field": "resources.mana",
+      "quote": "she currently had a 17 in intelligence, giving her 17 mana points"
+    }
+  ]
+}

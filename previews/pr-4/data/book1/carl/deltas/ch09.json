@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "chapterIndex": 9,
+  "notes": "Carl and Donut reach their first safe room — a fast food restaurant transplanted underground. Carl opens his safe-room boxes: bandages (new, they stop Bleed) and a silver ring of constitution that takes his CON to 10. He meets Tally, the Bopca Protector caretaker, rents a room and eats.",
+  "set": {
+    "location": "Safe Room (Floor 1) — an off-brand fast food restaurant with a playground",
+    "scene": "scene-safe-room"
+  },
+  "equipment": {
+    "add": [
+      {
+        "id": "silver-ring-of-constitution",
+        "name": "Silver Ring of Constitution",
+        "rarity": "unknown",
+        "effects": "+1 Constitution.",
+        "description": "A silver ring found in the Silver Adventurer Box awarded for reaching his first safe room. Wearing it brought Carl's Constitution up to 10.",
+        "statBonuses": {
+          "constitution": 1
+        },
+        "slot": "accessory"
+      }
+    ]
+  },
+  "inventory": {
+    "add": [
+      {
+        "id": "bandages",
+        "name": "Bandages",
+        "rarity": "common",
+        "effects": "Stops Bleed effects.",
+        "description": "A loot type Carl hadn't seen before, from his safe-room boxes. He doesn't know whether his trollskin shirt already stops Bleed."
+      }
+    ]
+  },
+  "achievements": {
+    "add": [
+      {
+        "id": "found-first-safe-room",
+        "name": "(Unnamed safe-room achievement)",
+        "reward": "You've received a Silver Adventurer Box!",
+        "description": "Reached his first safe room. The text records the box reward but not the achievement's name."
+      }
+    ]
+  },
+  "contacts": {
+    "add": [
+      {
+        "id": "tally",
+        "name": "Tally",
+        "relation": "Bopca Protector — safe-room caretaker (NPC)",
+        "note": "Level 63 Non-Combatant NPC with a Slavic accent, a blue apron and a paper hat. Bopca Protectors are gnome-like creatures who exist solely to watch over safe rooms — they cook and clean, are surly and smelly, and never wash their hands. Cooks anything but has no lamb (requisitioned for a floor-2 mob), refuses to allow smoking, and calls Donut 'Your Highness' unprompted. When this floor collapses he moves to a random deeper floor, and keeps moving down until he is no longer needed."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "field": "location",
+      "quote": "Entering Safe Room. […] We were in a fast food restaurant. It was almost like a McDonald's, but instead of everything being red and yellow, it was white and blue."
+    },
+    {
+      "field": "equipment.accessory",
+      "quote": "It was all the same stuff except for a silver ring I found in the silver box. The ring gave me +1 to my constitution, bringing the stat up to 10."
+    },
+    {
+      "field": "inventory",
+      "quote": "Potion, potion, torch, bandages—that was new. They stopped Bleed effects. I didn't know if my troll skin shirt stopped that or not."
+    },
+    {
+      "field": "achievements",
+      "quote": "I'd received multiple boxes, including a silver Adventurer Box for finding my first safe room."
+    },
+    {
+      "field": "contacts",
+      "quote": "Tally – Bopca Protector. Level 63. Caretaker of this saferoom. This is a Non-Combatant NPC."
+    }
+  ]
+}
