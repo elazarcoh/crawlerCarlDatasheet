@@ -27,80 +27,77 @@
       {
         "id": "crazy-cat-lady",
         "name": "Crazy Cat Lady",
-        "reward": "You've received a Bronze Pet Box!",
-        "description": "Entered the World Dungeon accompanied by a cat."
+        "description": "You have entered the World Dungeon accompanied by a cat. Ahh, isn’t that sweet?",
+        "reward": "You’ve received a Bronze Pet Box!"
       },
       {
         "id": "trailblazing-crazy-cat-lady",
         "name": "Trailblazing Crazy Cat Lady",
-        "reward": "You've received a Legendary Pet Box!",
-        "description": "First crawler ever to enter the World Dungeon accompanied by a cat."
+        "description": "You are the first crawler to have entered to the World Dungeon accompanied by a cat. You must really love that thing. Too bad you’re both probably going to die a horrible death at any moment. Or maybe not. Look at the prize you just received!",
+        "reward": "You’ve received a Legendary Pet Box!"
       },
       {
         "id": "early-adopter",
         "name": "Early Adopter",
-        "reward": "You've received a Silver Adventurer Box!",
-        "description": "One of the first 5,000 crawlers to enter a new World Dungeon."
+        "description": "You are one of the first 5,000 Crawlers to enter a new World Dungeon. Sucker.",
+        "reward": "You’ve received a Silver Adventurer Box!"
       },
       {
         "id": "empty-pockets",
-        "name": "Empty Pockets",
-        "reward": "You've received a Bronze Adventurer Box!",
-        "description": "Entered the dungeon without bringing any supplies."
+        "name": "Empty pockets",
+        "description": "You didn’t bring any supplies. None. You know you still gotta eat, right?",
+        "reward": "You’ve received a Bronze Adventurer Box!"
       },
       {
         "id": "why-arent-you-wearing-pants",
-        "name": "Why Aren't You Wearing Pants?",
-        "reward": "You've received a Gold Apparel Box!",
-        "description": "Entered the dungeon wearing no pants."
+        "name": "Why aren’t you wearing pants?",
+        "description": "You entered the dungeon wearing no pants. Dude. Seriously?",
+        "reward": "You’ve received a Gold Apparel Box!"
       },
       {
         "id": "unarmed-combat-achievement",
-        "name": "Unarmed Combat",
-        "reward": "You've received a Bronze Weapon Box!",
-        "description": "Entered the dungeon without bringing a weapon."
+        "name": "Unarmed combat",
+        "description": "So. You just gonna waltz right into something called a “World Dungeon” and you’re not even going to bring a weapon? You’re either braver than you look, or you’re just an idiot. Good luck with that, Van Damme.",
+        "reward": "You’ve received a Bronze Weapon Box!"
       },
       {
         "id": "loner",
         "name": "Loner",
-        "reward": "None.",
-        "description": "Entered the dungeon without any human companions."
+        "description": "You entered the dungeon without any human companions. Didn’t anyone teach you there is safety in numbers?",
+        "reward": "None! Haha. You are so dead."
       },
       {
         "id": "fall-into-obvious-trap",
-        "name": "Fall Into an Obvious Trap",
-        "reward": "None.",
-        "description": "Walked into an obvious trap — the goblin Murder Dozer ambush down the 'Da Tutorial Guild' alley."
+        "name": "Fall into an obvious trap",
+        "reward": "Well, if there’s a heaven, and if you haven’t been too much of an asshole, maybe they’ll let you in. Because you about to meet your maker.",
+        "note": "No commentary line for this one: the box went straight from the name to the reward. Earned by walking down the 'Da Tutorial Guild' alley into the goblin Murder Dozer ambush."
       },
       {
         "id": "read-dungeon-sign",
-        "name": "Discovered and Read an Official Dungeon Sign",
-        "reward": "All official dungeon signage is now highlighted and easier to spot; nearby guilds appear on your minimap.",
-        "description": "Read the genuine 'Tutorial Guild' sign painted on the wall."
+        "name": "You’ve discovered and read an official dungeon sign",
+        "description": "Wow. You can read. Whoopie.",
+        "reward": "All official dungeon signage will now be highlighted and easier to spot. Nearby guilds will appear on your minimap.",
+        "note": "Read the genuine 'Tutorial Guild' sign painted on the wall in dungeon script."
       },
       {
         "id": "inflicted-damage",
-        "name": "You've Inflicted Damage on a Mob",
-        "reward": "None.",
-        "description": "First damage dealt to a mob (a goblin at the guild door)."
+        "name": "(Unread notification)",
+        "note": "Earned for the first damage he dealt to a mob, the goblin at the guild door. Queued unread: his inventory is not yet active, so he cannot open the notification."
       },
       {
         "id": "killed-a-mob",
-        "name": "You've Killed a Mob!",
-        "reward": "You can now gain experience.",
-        "description": "First mob kill."
+        "name": "(Unread notification)",
+        "note": "Earned for his first mob kill. Queued unread: his inventory is not yet active, so he cannot open the notification."
       },
       {
         "id": "killed-armed-mob-bare-hands",
-        "name": "You've Killed an Armed Mob With Your Bare Hands!",
-        "reward": "You've received a Bronze Weapon Box!",
-        "description": "Beat a club-wielding goblin unconscious with his fists, then smashed its head against the stones."
+        "name": "(Unread notification)",
+        "note": "Earned for beating a club-wielding goblin unconscious with his fists, then smashing its head against the stones. Queued unread: his inventory is not yet active, so he cannot open the notification."
       },
       {
         "id": "entered-guildhall",
-        "name": "You've Entered a Guildhall!",
-        "reward": "None.",
-        "description": "Entered the Tutorial Guild hall."
+        "name": "(Unread notification)",
+        "note": "Earned for entering the Tutorial Guild hall. Queued unread: his inventory is not yet active, so he cannot open the notification."
       }
     ]
   },

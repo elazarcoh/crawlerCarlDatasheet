@@ -9,15 +9,15 @@
   "pr-2": {
     "built": "2026-07-30",
     "draft": true,
-    "ref": "data/book1-ch09 @ cb65ad5",
-    "sha": "cb65ad530cff2076d8a385af0c68458e56bfa895",
+    "ref": "data/book1-ch09 @ c944993",
+    "sha": "c94499321d5a6ee7aab910fa55e0ae647ae6dd7e",
     "title": "PR #2 — Add book 1 chapter 9 (the floor-1 safe room)"
   },
   "pr-4": {
     "built": "2026-07-30",
     "draft": true,
-    "ref": "data/book1-ch10 @ 541ed74",
-    "sha": "541ed748d35067def8651feb2bb1d582fed7d543",
+    "ref": "data/book1-ch10 @ fc7b9e6",
+    "sha": "fc7b9e60421d8aec3559c966dbf1b83cecbbc38c",
     "title": "PR #4 — Add book 1 chapter 10 (safe-room rest and the Scatterer grind)"
   }
 }

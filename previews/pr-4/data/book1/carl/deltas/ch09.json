@@ -38,7 +38,7 @@
         "id": "found-first-safe-room",
         "name": "(Unnamed safe-room achievement)",
         "reward": "You've received a Silver Adventurer Box!",
-        "description": "Reached his first safe room. The text records the box reward but not the achievement's name."
+        "note": "Reached his first safe room. Mentioned in passing while he sorts the loot, so the box is never shown and neither the name nor the system's wording is known."
       }
     ]
   },

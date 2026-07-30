@@ -29,8 +29,8 @@
   },
   "achievements": {
     "add": [
-      { "id": "looted-corpse", "name": "Looted a Corpse", "reward": "You've received a Bronze Adventurer Box!", "description": "Looted the Bad Llama's corpse for the first time." },
-      { "id": "shared-experience", "name": "Shared Experience", "reward": "You've received a Bronze Adventurer Box!", "description": "Shared experience with a party member (Donut) after a kill." }
+      { "id": "looted-corpse", "name": "Looted a Corpse", "reward": "You've received a Bronze Adventurer Box!", "note": "Looted the Bad Llama's corpse for the first time. The narration only mentions this achievement in passing, so the system's own wording is unknown." },
+      { "id": "shared-experience", "name": "Shared Experience", "reward": "You've received a Bronze Adventurer Box!", "note": "Shared experience with a party member (Donut) after a kill. Mentioned in passing only, so the system's own wording is unknown." }
     ]
   },
   "contacts": {
