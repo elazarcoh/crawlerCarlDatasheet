@@ -108,6 +108,13 @@ export const Resource = z.object({
 });
 export type Resource = z.infer<typeof Resource>;
 
+/**
+ * Where a worn item sits, in render order. These are **display groupings, not
+ * capacity limits**: the books have no equipment-slot system at all (`slot` in
+ * the prose only ever means inventory stacking or the hotlist), so several items
+ * legitimately share one — a trollskin shirt layered under a cloak on `body`,
+ * or the two rings of constitution Carl wears from book 1 ch19 onward.
+ */
 export const EQUIPMENT_SLOTS = [
   "head",
   "body",
@@ -119,18 +126,15 @@ export const EQUIPMENT_SLOTS = [
   "accessory",
 ] as const;
 export type EquipmentSlot = (typeof EQUIPMENT_SLOTS)[number];
+export const EquipmentSlotId = z.enum(EQUIPMENT_SLOTS);
 
-export const Equipment = z.object({
-  head: Item.nullable().default(null),
-  body: Item.nullable().default(null),
-  underwear: Item.nullable().default(null),
-  hands: Item.nullable().default(null),
-  feet: Item.nullable().default(null),
-  weapon: Item.nullable().default(null),
-  offhand: Item.nullable().default(null),
-  accessory: Item.nullable().default(null),
-});
-export type Equipment = z.infer<typeof Equipment>;
+/**
+ * An `Item` plus where it is worn. `Snapshot.equipment` is a flat list of these,
+ * which is what lets a delta use ordinary `add`/`remove`/`update` list ops on it
+ * instead of restating a whole slot.
+ */
+export const EquippedItem = Item.extend({ slot: EquipmentSlotId });
+export type EquippedItem = z.infer<typeof EquippedItem>;
 
 export const Identity = z.object({
   name: z.string(),
@@ -160,7 +164,8 @@ export const Snapshot = z.object({
   location: z.string().nullable().default(null),
   stats: Stats,
   resources: z.object({ hp: Resource, mana: Resource }),
-  equipment: Equipment,
+  /** Flat list of worn items; group by `slot` for display. */
+  equipment: z.array(EquippedItem).default([]),
   inventory: z.array(Item).default([]),
   skills: z.array(Skill).default([]),
   effects: z.array(Effect).default([]),
@@ -196,7 +201,6 @@ export const DeltaSet = z
       .object({ hp: Resource.partial(), mana: Resource.partial() })
       .partial()
       .optional(),
-    equipment: Equipment.partial().optional(),
     appearance: Appearance.partial().optional(),
     scene: z.string().nullable().optional(),
     misc: Misc.optional(),
@@ -212,6 +216,8 @@ export const Delta = z
     chapterIndex: z.number().int(),
     notes: z.string().optional(),
     set: DeltaSet.optional(),
+    /** Worn items use list ops like every other list — no whole-slot restating. */
+    equipment: listOp(EquippedItem).optional(),
     inventory: listOp(Item).optional(),
     skills: listOp(Skill).optional(),
     effects: listOp(Effect).optional(),

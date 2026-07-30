@@ -46,10 +46,24 @@ Rules:
 - `set` deep-merges: `"stats": { "strength": 6 }` changes only strength.
 - List ops: `add` new entries, `remove` by id, `update` by id (partial). Stackable
   items (with `qty`) added by an existing id bump the quantity.
-- Equipment lives under `set.equipment.<slot>` where slot ∈ head, body,
-  **underwear**, hands, feet, weapon, offhand, accessory; the value is an Item
-  object or `null`. (Underwear/undergarments — e.g. Carl's boxers — go in the
-  `underwear` slot so worn basics show up.)
+- **`equipment` is a top-level list op, NOT part of `set`.** It is a flat list of
+  worn items, each an Item plus a `slot` field. Use it exactly like `inventory`:
+  ```json
+  "equipment": { "add": [ { "id": "…", "name": "…", "rarity": "…", "slot": "accessory",
+                            "statBonuses": { "constitution": 1 } } ],
+                 "remove": ["pink-crocs"], "update": [ { "id": "…", "effects": "…" } ] }
+  ```
+  Put something on with `add`, take it off with `remove`, and never restate items
+  that are still worn.
+- `slot` ∈ head, body, **underwear**, hands, feet, weapon, offhand, accessory.
+  **Slots are display groupings, not capacity limits** — several items may share
+  one, because the books have no equipment-slot system at all. Carl's `body`
+  holds his leather jacket, trollskin shirt and nightgaunt cloak together as the
+  layers they are, and his `accessory` holds every ring at once (two from ch19).
+  Put jewellery in `accessory`, not on the body part it touches: a toe ring is
+  not footwear, and `feet` must stay empty because he is barefoot all book.
+- Anything in `equipment` contributes its `statBonuses`/`grants`; items merely
+  carried belong in `inventory` and contribute nothing.
 - **Add a `sources` quote for every non-trivial change** so data is auditable.
 - Never invent numbers. If the book doesn't state it, leave it `null`/omit it.
 - `rarity` ∈ common, uncommon, rare, epic, legendary, unknown.

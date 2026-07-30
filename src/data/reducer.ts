@@ -9,8 +9,15 @@ import type { Delta, Item, Snapshot } from "../schema";
  * the character's intro chapter B, so startOf(B) === base.
  */
 
-type ListName = "inventory" | "skills" | "effects" | "achievements" | "contacts";
+type ListName =
+  | "equipment"
+  | "inventory"
+  | "skills"
+  | "effects"
+  | "achievements"
+  | "contacts";
 const LIST_NAMES: ListName[] = [
+  "equipment",
   "inventory",
   "skills",
   "effects",

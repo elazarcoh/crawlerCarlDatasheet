@@ -36,6 +36,7 @@ const SCALARS: Array<{ key: string; label: string; get: (s: Snapshot) => unknown
 ];
 
 const LISTS: Array<{ name: string; get: (s: Snapshot) => Array<{ id: string; name: string }> }> = [
+  { name: "equipment", get: (s) => s.equipment },
   { name: "inventory", get: (s) => s.inventory },
   { name: "skills", get: (s) => s.skills },
   { name: "effects", get: (s) => s.effects },

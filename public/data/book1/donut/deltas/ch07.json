@@ -3,7 +3,9 @@
   "chapterIndex": 7,
   "notes": "Donut emerges from the blob still a cat but now sapient and talking, with drastically rebuilt stats from an Enhanced Growth buff (Str 11, Int 11, Con 2, Dex 8, Cha 25). Mordecai reclassifies her from pet to full crawler and activates her menus. She opens her boxes — including a Legendary Quadruped Box for being the first cat in the dungeon — learns Magic Missile from a Tome, and equips the Enchanted Crown of the Sepsis Whore. She becomes the party leader, names the party The Royal Court of Princess Donut, and takes the title Grand Champion Best in Dungeon. New look: the same fluffy tortoiseshell Persian now wearing a cat-sized jeweled purple tiara.",
   "set": {
-    "identity": { "title": "Grand Champion Best in Dungeon" },
+    "identity": {
+      "title": "Grand Champion Best in Dungeon"
+    },
     "stats": {
       "strength": 11,
       "intelligence": 11,
@@ -11,19 +13,15 @@
       "dexterity": 8,
       "charisma": 25
     },
-    "resources": { "mana": { "cur": 16, "max": 16 } },
-    "equipment": {
-      "head": {
-        "id": "crown-sepsis-whore",
-        "name": "Enchanted Crown of the Sepsis Whore",
-        "rarity": "legendary",
-        "effects": "+5 Intelligence; +5 to the Good First Impression skill; all attacks (including magical) have a 15% chance to inflict the Sepsis debuff.",
-        "description": "A cat-sized jeweled tiara set with smoky dark gems and a swirling, liquid deep-purple center stone. Fleeting (crumbles to dust the moment it is removed, then respawns elsewhere in the dungeon) and Unique*. Wearing it permanently places the wearer in the royal line of succession for the Blood Sultanate on floor 9 — royals must slay the Sultan and all other royals before they may descend to floor 10, and removing the crown does not remove this status.",
-        "statBonuses": { "intelligence": 5 },
-        "grants": [{ "skill": "good-first-impression", "name": "Good First Impression", "level": 5 }]
+    "resources": {
+      "mana": {
+        "cur": 16,
+        "max": 16
       }
     },
-    "appearance": { "stateId": "donut-03-tiara" },
+    "appearance": {
+      "stateId": "donut-03-tiara"
+    },
     "misc": {
       "crawlerId": 4119,
       "showName": "GC, BWR, NW Princess Donut the Queen Anne Chonk",
@@ -31,40 +29,25 @@
       "partyLeader": true
     }
   },
-  "skills": {
+  "equipment": {
     "add": [
       {
-        "id": "magic-missile",
-        "name": "Magic Missile",
-        "level": 1,
-        "description": "Offensive spell learned permanently from a Tome of Magic Missile; fires bolts of force from her eyes. Each cast costs 5 mana."
-      }
-    ]
-  },
-  "effects": {
-    "remove": ["transforming"],
-    "add": [
-      {
-        "id": "enhanced-growth",
-        "name": "Enhanced Growth",
-        "kind": "buff",
-        "description": "After an initial boost to four random stats, every level automatically grants +1 Strength, +1 Intelligence and +2 Charisma. Stat points disburse on level-up without needing a class, so she gains 4 per level instead of 3. Downside: her Constitution (2) and Dexterity (8) are locked unless changed by gear or a chosen race/class. (Her original stats were 1/1/1 with Dexterity 8 and Charisma 5.)"
-      },
-      {
-        "id": "blood-sultanate-succession",
-        "name": "Blood Sultanate Line of Succession",
-        "kind": "debuff",
-        "description": "Consequence of donning the Enchanted Crown of the Sepsis Whore: she is permanently in the royal line of succession for the Blood Sultanate on floor 9. She must slay the Sultan and all other royals before descending to floor 10; taking the crown off does not remove this status."
-      }
-    ]
-  },
-  "achievements": {
-    "add": [
-      {
-        "id": "first-cat",
-        "name": "First Cat in the Dungeon",
-        "reward": "Legendary Quadruped Box",
-        "description": "Awarded to Donut for being the first cat to enter the World Dungeon."
+        "id": "crown-sepsis-whore",
+        "name": "Enchanted Crown of the Sepsis Whore",
+        "rarity": "legendary",
+        "effects": "+5 Intelligence; +5 to the Good First Impression skill; all attacks (including magical) have a 15% chance to inflict the Sepsis debuff.",
+        "description": "A cat-sized jeweled tiara set with smoky dark gems and a swirling, liquid deep-purple center stone. Fleeting (crumbles to dust the moment it is removed, then respawns elsewhere in the dungeon) and Unique*. Wearing it permanently places the wearer in the royal line of succession for the Blood Sultanate on floor 9 — royals must slay the Sultan and all other royals before they may descend to floor 10, and removing the crown does not remove this status.",
+        "statBonuses": {
+          "intelligence": 5
+        },
+        "grants": [
+          {
+            "skill": "good-first-impression",
+            "name": "Good First Impression",
+            "level": 5
+          }
+        ],
+        "slot": "head"
       }
     ]
   },
@@ -87,6 +70,45 @@
         "name": "Pet Biscuit",
         "rarity": "common",
         "description": "Feeds a pet-based class for a full day; pets find them delicious."
+      }
+    ]
+  },
+  "skills": {
+    "add": [
+      {
+        "id": "magic-missile",
+        "name": "Magic Missile",
+        "level": 1,
+        "description": "Offensive spell learned permanently from a Tome of Magic Missile; fires bolts of force from her eyes. Each cast costs 5 mana."
+      }
+    ]
+  },
+  "effects": {
+    "remove": [
+      "transforming"
+    ],
+    "add": [
+      {
+        "id": "enhanced-growth",
+        "name": "Enhanced Growth",
+        "kind": "buff",
+        "description": "After an initial boost to four random stats, every level automatically grants +1 Strength, +1 Intelligence and +2 Charisma. Stat points disburse on level-up without needing a class, so she gains 4 per level instead of 3. Downside: her Constitution (2) and Dexterity (8) are locked unless changed by gear or a chosen race/class. (Her original stats were 1/1/1 with Dexterity 8 and Charisma 5.)"
+      },
+      {
+        "id": "blood-sultanate-succession",
+        "name": "Blood Sultanate Line of Succession",
+        "kind": "debuff",
+        "description": "Consequence of donning the Enchanted Crown of the Sepsis Whore: she is permanently in the royal line of succession for the Blood Sultanate on floor 9. She must slay the Sultan and all other royals before descending to floor 10; taking the crown off does not remove this status."
+      }
+    ]
+  },
+  "achievements": {
+    "add": [
+      {
+        "id": "first-cat",
+        "name": "First Cat in the Dungeon",
+        "reward": "Legendary Quadruped Box",
+        "description": "Awarded to Donut for being the first cat to enter the World Dungeon."
       }
     ]
   },

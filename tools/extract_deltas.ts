@@ -36,10 +36,15 @@ Rules:
              "identity": { "race": <string|null>, "class": <string|null>, "title": <string|null> },
              "stats": { "strength": <int>, "constitution": <int>, "dexterity": <int>, "intelligence": <int>, "charisma": <int> },
              "resources": { "hp": { "cur": <int|null>, "max": <int|null> }, "mana": { "cur": <int|null>, "max": <int|null> } },
-             "equipment": { "<slot>": <Item|null> },   // slots: head, body, underwear, hands, feet, weapon, offhand, accessory
              "appearance": { "stateId": "<char>-NN-<slug>" },  // only when the visible look changes
              "scene": "scene-<slug>",                          // only when the location visibly changes
              "misc": { "<key>": <string|number|boolean|null> } },
+    "equipment":    { "add": [Item & { "slot": "head|body|underwear|hands|feet|weapon|offhand|accessory" }],
+                      "remove": ["id"], "update": [{ "id": "...", ... }] },
+                   // Flat list of WORN items. Slots are display groupings, not capacity limits:
+                   // several items share one (jacket+shirt+cloak on "body"; every ring on
+                   // "accessory"). Jewellery goes in "accessory", never on the body part it
+                   // touches. Only worn items grant statBonuses/grants.
     "inventory":    { "add": [Item], "remove": ["id"], "update": [{ "id": "...", ... }] },
     "skills":       { "add": [{ "id","name","level"?,"description"? }], "remove": [...], "update": [...] },
     "effects":      { "add": [{ "id","name","kind":"buff|debuff|neutral","description"? }], ... },

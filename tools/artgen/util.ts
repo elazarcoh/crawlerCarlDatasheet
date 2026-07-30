@@ -1,7 +1,10 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-export const REPO = join(new URL("../..", import.meta.url).pathname);
+// fileURLToPath (not URL.pathname) — on Windows .pathname yields "/D:/repo",
+// which join() turns into the invalid "\D:\repo".
+export const REPO = fileURLToPath(new URL("../..", import.meta.url));
 
 /**
  * Minimal .env loader (no dependency). Reads KEY=VALUE lines from the repo-root
