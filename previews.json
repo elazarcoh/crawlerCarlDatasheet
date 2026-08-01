@@ -1,9 +1,9 @@
 {
   "main": {
-    "built": "2026-07-30",
+    "built": "2026-08-01",
     "draft": false,
-    "ref": "main @ 815a4f6",
-    "sha": "815a4f63f55f3a36b6d152bcd1a1e56a33da07d6",
+    "ref": "main @ 77b5e1c",
+    "sha": "77b5e1c45720c2036b9d0cb8e052c0ecc88f2206",
     "title": "main — upstream baseline"
   },
   "pr-2": {
@@ -19,13 +19,6 @@
     "ref": "data/book1-ch10 @ fc7b9e6",
     "sha": "fc7b9e60421d8aec3559c966dbf1b83cecbbc38c",
     "title": "PR #4 — Add book 1 chapter 10 (safe-room rest and the Scatterer grind)"
-  },
-  "pr-6": {
-    "built": "2026-08-01",
-    "draft": false,
-    "ref": "data/source-citations @ aac029c",
-    "sha": "aac029cae1232c5ca2f58663d5af3cc0afa15e98",
-    "title": "PR #6 — Make citations checkable: ref, chapter, derived, note"
   },
   "pr-7": {
     "built": "2026-08-01",

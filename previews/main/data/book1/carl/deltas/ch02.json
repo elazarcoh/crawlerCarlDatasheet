@@ -120,24 +120,46 @@
   },
   "sources": [
     {
-      "field": "identity.race",
+      "ref": "identity.race",
       "quote": "You have been designated Crawler Number 4,122. You have been assigned the Crawler Name “Carl.” You are assigned the race of Human. You are currently level 1. You may choose a new race and class as soon as you descend to the third floor."
     },
     {
-      "field": "achievements",
+      "ref": "achievements",
       "quote": "Congratulations! You’ve earned your first achievement: Crazy Cat Lady. ... Reward: You’ve received a Bronze Pet Box! ... Reward: You’ve received a Legendary Pet Box! ... Reward: You’ve received a Silver Adventurer Box! ... Reward: You’ve received a Bronze Adventurer Box! ... Reward: You’ve received a Gold Apparel Box! ... Reward: You’ve received a Bronze Weapon Box! ... Reward: None! Haha. You are so dead."
     },
     {
-      "field": "equipment.feet",
+      "ref": "equipment:pink-crocs",
       "quote": "Both of my pink Crocs went flying as I turned down the main tunnel, heading away from where I’d come down the stairs."
     },
     {
-      "field": "contacts",
-      "quote": "“Nobody tells old Mordecai anything!” ... Mordecai – Rat Hooligan. Level 50. Guildmaster of this guildhall. This is a Non-Combatant NPC."
+      "ref": "contacts:mordecai",
+      "quote": "“Nobody tells old Mordecai anything!”"
     },
     {
-      "field": "contacts",
+      "ref": "contacts:donut",
       "quote": "Crawler #4,119. “Princess Donut.” Level 1. Race: Cat. Class: Not yet assigned."
+    },
+    {
+      "ref": "level",
+      "quote": "You are assigned the race of Human. You are currently level 1."
+    },
+    {
+      "ref": "floor",
+      "quote": "Dungeon Floor 1."
+    },
+    {
+      "ref": "location",
+      "quote": "Welcome, Crawler. Welcome to the First Floor."
+    },
+    {
+      "ref": "misc.crawlerId",
+      "quote": "You have been designated Crawler Number 4,122."
+    },
+    {
+      "ref": "contacts:mordecai",
+      "chapter": 3,
+      "note": "Carl meets him here; his infobox is only read at the start of the next chapter.",
+      "quote": "Mordecai – Rat Hooligan. Level 50. … Guildmaster of this guildhall. … This is a Non-Combatant NPC."
     }
   ]
 }

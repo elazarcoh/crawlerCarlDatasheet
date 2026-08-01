@@ -16,10 +16,25 @@
     ]
   },
   "sources": [
-    { "field": "stats", "quote": "Strength: 6  Intelligence: 3  Constitution: 5  Dexterity: 5  Charisma: 4" },
-    { "field": "stats", "quote": "According to Mordecai, I couldn’t directly adjust these stats. Not yet. I received three stat points every time I leveled up, but I couldn’t distribute them until I picked a race and class." },
-    { "field": "resources.mana", "quote": "I was given a simple healing spell and a pool of mana points ... Because my intelligence was only three, I only had three magic points. The healing spell cost two." },
-    { "field": "skills", "quote": "What was left was things like Unarmed Combat: 3, Basic Electrical Repair: 6, Swimming: 4. Nothing was over five other than Electrical Repair." },
-    { "field": "misc", "quote": "Ratings — Views: 0  Followers: 0  Favorites: 0  Patrons: 0" }
+    {
+      "ref": "stats",
+      "quote": "Strength: 6  Intelligence: 3  Constitution: 5  Dexterity: 5  Charisma: 4"
+    },
+    {
+      "ref": "stats",
+      "quote": "According to Mordecai, I couldn’t directly adjust these stats. Not yet. I received three stat points every time I leveled up, but I couldn’t distribute them until I picked a race and class."
+    },
+    {
+      "ref": "resources.mana",
+      "quote": "I was given a simple healing spell and a pool of mana points ... Because my intelligence was only three, I only had three magic points. The healing spell cost two."
+    },
+    {
+      "ref": "skills",
+      "quote": "What was left was things like Unarmed Combat: 3, Basic Electrical Repair: 6, Swimming: 4. Nothing was over five other than Electrical Repair."
+    },
+    {
+      "ref": "misc",
+      "quote": "Ratings — Views: 0  Followers: 0  Favorites: 0  Patrons: 0"
+    }
   ]
 }
