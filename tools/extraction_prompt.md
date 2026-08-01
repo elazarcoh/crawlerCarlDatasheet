@@ -94,6 +94,28 @@ the four other fields doing their jobs instead:
 - **`note`** — your reasoning, the arithmetic, why the chapter differs.
   Everything that is not the book talking.
 
+### Names: one per id, taken from the book where the book has one
+
+The UI shows a single row per `id` across every chapter, so a name is chosen
+once — at first introduction — and never varies after. `validate.ts` enforces
+that: renaming an existing id is an error unless the old name was a placeholder.
+
+- **Use the book's label from the chapter that first prints it**, not the local
+  prose. The loot box in ch05 reads `Potion of Healing X 2.` and `Common
+  Fingerless Gloves.`, so those are the names — even though ch06 calls them "a
+  pair of healing potions" and never mentions the gloves at all. Later chapters
+  inherit the name; don't re-word it to match whatever that chapter happens to
+  say, and don't restate a different name when an item moves from `inventory`
+  to `equipment`.
+- **Effects are usually unnamed by the book.** It describes an ongoing condition
+  without labelling it, and the schema needs a `name`, so derive one from the
+  item that causes it — the *Enchanted Nightgaunt Cloak of Stoutness* gives
+  "Nightgaunt Stoutness" — and let `description` say what the book actually
+  said. These are the one place a coined name is expected.
+- Everywhere else, if you are writing a name the book never uses, stop and check
+  whether the book names it in a different chapter. `npm run validate --verbose`
+  lists every name that appears in no chapter, and that list should stay short.
+
 ### Achievements: quote the AI, don't summarise it (IMPORTANT)
 
 The book prints an achievement as three parts, and all three are content:
@@ -120,9 +142,21 @@ Reward : You’ve received a Gold Shoe Box!
   the AI leaves out (which mob, which trap, what it triggered). Use it freely,
   and never put book text in it.
 - When the prose only *mentions* an achievement without showing the box (Donut's
-  are all reported second-hand through Carl), **omit `description` entirely**
-  and put the summary in `note`, saying the wording is unknown. `description`
-  must only ever hold text the book actually displayed.
+  are all reported second-hand through Carl), **omit `description` and `reward`
+  entirely** and put everything in `note`, saying the wording is unknown. Those
+  two fields may only ever hold text the book actually displayed — writing
+  *"You've received a Bronze Adventurer Box!"* because the narration said Carl
+  received one is putting words in the system's mouth, and `validate.ts` will
+  reject it.
+- Its `name` gets the same treatment, and this is the easy one to get wrong,
+  because a plausible title is easy to write. The book saying *"One for looting
+  a corpse and one for sharing experience"* does **not** give you "Looted a
+  Corpse" — that is your title in the system's font. Use `(Unnamed <what it was
+  for> achievement)` and let `note` carry the meaning.
+- But look for the wording elsewhere first. Achievement names are global, so
+  Donut's unseen kill notifications are the same ones Carl earned in ch02–03 and
+  read in ch05. Use that verbatim name and cite it with `chapter: 5`, rather
+  than inventing a title or throwing away wording the book gave you.
 
 ### Delayed reveals: add a placeholder, then `update` it
 
@@ -153,6 +187,16 @@ stable across both steps; that is what ties them together, and `validate.ts`
 fails the build if an `update` names an id that was never added.
 
 The same shape fits any withheld-then-revealed fact, not just achievements.
+
+**Two placeholders, and they mean different things.** `(Unread notification)`
+is a promise: the book *will* print this text later, and a delta for that
+chapter must `update` the id with it. `(Unnamed …)` is final: the book never
+shows the box at all, so the entry keeps the placeholder for good and `note`
+carries everything known. Don't use the first where you mean the second — an
+`(Unread notification)` nobody ever reads is a reveal you forgot to author.
+
+`validate.ts` enforces the pair: a name may only change when the old one was a
+placeholder, so a reveal is legal and a silent rename is an error.
 
 ⚠️ Consequence for extraction: **a chapter's own text may not contain the
 wording for the achievements it awards.** If a chapter grants one without

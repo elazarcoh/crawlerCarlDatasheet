@@ -71,6 +71,15 @@ composed view then tells the truth at every chapter, and since `diff.ts` reports
 updates, the reveal reads as its own event in the changes box. `validate.ts` rejects an
 `update` for an id that was never added, so the two halves cannot silently drift apart.
 
+**Two placeholders, meaning different things.** `(Unread notification)` promises the book
+prints the text later and a delta must `update` the id with it. `(Unnamed …)` is final — the
+box is never shown, so the entry keeps the placeholder and `note` carries what is known.
+Names are otherwise fixed for the life of the book: one id, one display name, chosen at
+first introduction from the chapter that prints it. `validate.ts` allows a rename only when
+the old name was a placeholder, which is exactly the reveal, and treats any other rename as
+an error. So an item keeps its ch05 loot-box label when it moves from `inventory` to
+`equipment` in ch06, even though ch06 never names it.
+
 `src/schema/index.ts` is the single source of truth: zod schemas produce both the runtime
 validators and the TypeScript types (`z.infer`). `Delta` and `DeltaSet` are `.strict()`, so
 an unknown key is a validation error, not a silent no-op.
