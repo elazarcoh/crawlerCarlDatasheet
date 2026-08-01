@@ -39,10 +39,40 @@
     ]
   },
   "sources": [
-    { "field": "level", "quote": "I hit level three and gained a skill called Foot Soldier, and a second one called Smush." },
-    { "field": "skills.smush", "quote": "Smush: Skill Level 3 ... Taking your bare foot, placing it on top of a living, conscious life, and then pressing lovingly down ... increased by 10% with each level of this skill." },
-    { "field": "inventory", "quote": "Poor Llama skin. Uncooked Llama steaks X2. Baggie of trailer park-grade meth X2. ... I added the rest of the items to my inventory. My inventory added two new menus: Food Items and Pharmaceuticals." },
-    { "field": "effects.fatigued", "quote": "In my health menu it listed me as Fatigued. It didn’t cure itself with my regeneration. We had to find one of the rest areas." },
-    { "field": "contacts", "quote": "“I’m now your registered guide, so feel free to come back here if you have any additional questions. You’ll lose access to me once you hit the fourth floor.”" }
+    {
+      "ref": "level",
+      "quote": "I hit level three and gained a skill called Foot Soldier, and a second one called Smush."
+    },
+    {
+      "ref": "skills:smush",
+      "quote": "Smush: Skill Level 3 ... Taking your bare foot, placing it on top of a living, conscious life, and then pressing lovingly down ... increased by 10% with each level of this skill."
+    },
+    {
+      "ref": "inventory",
+      "quote": "Poor Llama skin. Uncooked Llama steaks X2. Baggie of trailer park-grade meth X2. ... I added the rest of the items to my inventory. My inventory added two new menus: Food Items and Pharmaceuticals."
+    },
+    {
+      "ref": "effects:fatigued",
+      "quote": "In my health menu it listed me as Fatigued. It didn’t cure itself with my regeneration. We had to find one of the rest areas."
+    },
+    {
+      "ref": "contacts:mordecai",
+      "quote": "“I’m now your registered guide, so feel free to come back here if you have any additional questions. You’ll lose access to me once you hit the fourth floor.”"
+    },
+    {
+      "ref": "misc.undistributedStatPoints",
+      "chapter": 4,
+      "derived": true,
+      "note": "Three points per level and no way to spend them before the third floor; at level 3 that is six banked.",
+      "quote": "I received three stat points every time I leveled up, but I couldn’t distribute them until I picked a race and class."
+    },
+    {
+      "ref": "location",
+      "quote": "We kept travelling. The minimap showed the cardinal directions, and we headed east."
+    },
+    {
+      "ref": "achievements",
+      "quote": "I had a couple new achievements. One for looting a corpse and one for sharing experience. I received a pair of Bronze Adventurer boxes."
+    }
   ]
 }

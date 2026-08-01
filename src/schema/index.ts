@@ -219,7 +219,35 @@ export const DeltaSet = z
   .strict();
 export type DeltaSet = z.infer<typeof DeltaSet>;
 
-export const Source = z.object({ field: z.string(), quote: z.string() });
+/**
+ * A citation: one verbatim scrap of book text, and what it backs.
+ *
+ * `quote` is book text and nothing else — reasoning, arithmetic and editorial
+ * asides belong in `note`, so the quote stays machine-checkable against the
+ * chapter (see `npm run validate`).
+ */
+export const Source = z
+  .object({
+    /**
+     * What this backs: a field path into `set` ("stats.strength",
+     * "misc.crawlerId"), a list name ("achievements"), or a single list item
+     * ("inventory:torch"). Must name something the delta actually touches.
+     */
+    ref: z.string(),
+    /**
+     * Chapter the text is printed in. Omit when it is the delta's own chapter.
+     * A later chapter is legal — Carl reaches level 2 in ch03, but the
+     * notification is only printed in ch05 when he reads his backlog.
+     */
+    chapter: z.number().int().optional(),
+    /** The value is computed from a rule the book states, not printed as-is. */
+    derived: z.boolean().optional(),
+    /** Reasoning, arithmetic, or why the quote sits in another chapter. */
+    note: z.string().optional(),
+    /** Verbatim book text; use "…" for elisions. */
+    quote: z.string(),
+  })
+  .strict();
 
 export const Delta = z
   .object({

@@ -31,22 +31,31 @@
     ]
   },
   "sources": [
-    { "field": "level", "quote": "Donut had leveled up to two after the llama battle." },
     {
-      "field": "stats",
+      "ref": "level",
+      "quote": "Donut had leveled up to two after the llama battle."
+    },
+    {
+      "ref": "resources.mana",
       "quote": "I could see she currently had a 17 in intelligence, giving her 17 mana points. Each zap of her spell cost five mana points."
     },
-    { "field": "skills", "quote": "Her skill level in the spell went up to three." },
     {
-      "field": "location",
+      "ref": "skills:magic-missile",
+      "quote": "Her skill level in the spell went up to three."
+    },
+    {
+      "ref": "location",
       "quote": "I saw the safe room glowing green on the edge of the minimap… We entered the safe room."
     },
     {
-      "field": "achievements",
+      "ref": "achievements",
       "quote": "Donut got the same, plus a couple additional achievements for casting her first spell and finally killing something, along with killing a mob higher level than herself."
     },
     {
-      "field": "stats.strength / stats.charisma (derived from the stated rule)",
+      "ref": "stats",
+      "chapter": 7,
+      "derived": true,
+      "note": "Enhanced Growth applied to the level 1 sheet (Str 11 / Int 11 / Cha 25): level 2 gives Str 12, Int 12, Cha 27.",
       "quote": "After an initial boost to four random stats, all additional levels will automatically grant +1 to Strength and Intelligence. Charisma will gain +2 per level. No additional stat points will be received upon level-up."
     }
   ]

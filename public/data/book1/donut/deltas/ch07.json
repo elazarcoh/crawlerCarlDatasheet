@@ -114,36 +114,52 @@
   },
   "sources": [
     {
-      "field": "stats",
+      "ref": "stats",
       "quote": "Strength: 11 / Intelligence: 11 / Constitution: 2 / Dexterity: 8 / Charisma: 25"
     },
     {
-      "field": "effects",
+      "ref": "effects:enhanced-growth",
       "quote": "'Her stats were all one. All except dexterity, which was always eight and charisma which was five. Whatever buff you gave her kept her race but changed her stats.' … Enhanced Growth. After an initial boost to four random stats, all additional levels will automatically grant +1 to Strength and Intelligence. Charisma will gain +2 per level. No additional stat points will be received upon level-up."
     },
     {
-      "field": "equipment",
+      "ref": "equipment:crown-sepsis-whore",
       "quote": "A small, jeweled tiara. The cat-sized crown glittered with smoky, dark gems. The deep purple stone in the center swirled internally with clouds… Enchanted Crown of the Sepsis Whore. … Imbues wearer with +5 Intelligence, grants the user +5 to the Good First Impression skill. All attacks, including magical attacks, now have a 15% chance to inflict the Sepsis debuff."
     },
     {
-      "field": "effects",
+      "ref": "effects:blood-sultanate-succession",
       "quote": "Placing this crown upon your head permanently places you within the royal line of succession for the Blood Sultanate on the ninth floor of the world dungeon. … Royal members of the Blood Sultanate will be required to slay the Sultan and all other members of the royal family before descending to the tenth floor."
     },
     {
-      "field": "skills",
+      "ref": "skills:magic-missile",
       "quote": "'Ah, Princess Donut, I see you taught yourself the Magic Missile spell already. That's good, good. In case you didn't know, tomes will permanently teach you the spell…' … Tome of Magic Missile"
     },
     {
-      "field": "identity",
+      "ref": "identity.title",
       "quote": "Princess Donut has changed her title to Grand Champion Best in Dungeon."
     },
     {
-      "field": "misc",
+      "ref": "misc",
       "quote": "'First off, Carl, my name is \"GC, BWR, NW Princess Donut the Queen Anne Chonk\"…' … Princess Donut has named your party The Royal Court of Princess Donut. … 'She has the highest combined stat total, so she's the designated party leader.'"
     },
     {
-      "field": "achievements",
+      "ref": "achievements:first-cat",
       "quote": "'She received a Legendary Quadruped box for being the first cat to enter the dungeon.'"
+    },
+    {
+      "ref": "misc.crawlerId",
+      "chapter": 2,
+      "quote": "Crawler #4,119. “Princess Donut.” Level 1. Race: Cat. Class: Not yet assigned."
+    },
+    {
+      "ref": "resources.mana",
+      "chapter": 8,
+      "derived": true,
+      "note": "Mana max equals total Intelligence: 11 base plus the Crown of the Sepsis Whore's +5.",
+      "quote": "I could see she currently had a 17 in intelligence, giving her 17 mana points."
+    },
+    {
+      "ref": "inventory",
+      "quote": "Three bronze ones with a couple healing potions and torches. Next was a silver adventurer box that contained a book and a pile of pet biscuits."
     }
   ]
 }

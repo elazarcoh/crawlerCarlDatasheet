@@ -20,12 +20,17 @@ npm install
 npm run dev          # http://localhost:5173
 npm run build        # tsc (type-check, noEmit) + vite build → dist/
 npm run preview      # serve the production build
-npm run validate     # tools/validate.ts — schema + delta consistency over all data
+npm run validate     # tools/validate.ts — schema + delta + citation checks over all data
+npm run validate -- --verbose   # also list names that are ours rather than the book's
 ```
 
 There is **no test framework and no linter**. `npm run validate` is the test suite for data,
 and `tsc` (via `npm run build`) is the check for code. To validate a subset, edit/copy
 `tools/validate.ts` — it has no filter flags. All tool scripts run under `tsx`.
+
+Citation checks need `data-src/<book>/chapters_txt/` (git-ignored — run
+`tools/extract_text.py`). Without it those checks are skipped and counted as unchecked, so
+a fresh clone still validates; with it, every quote is searched for in the chapter it cites.
 
 Data authoring:
 
@@ -151,8 +156,22 @@ fine in `misc`. A generated delta whose `notes` start with `REVIEW NEEDED:` is t
 machine-authored version of this signal.
 
 **Never invent book facts.** Use `null` for anything the text hasn't revealed, and attach a
-verbatim `sources` quote for every non-trivial change. `null` stats propagate: an unknown
-base stat yields an unknown total rather than a bonus-only number.
+`sources` entry for every non-trivial change. `null` stats propagate: an unknown base stat
+yields an unknown total rather than a bonus-only number.
+
+**Citations are machine-checked, so the quote must be only book text.** A `Source` is
+`{ ref, chapter?, derived?, note?, quote }`. `quote` is copied from the page — `validate.ts`
+searches the chapter for it, splitting on `…` so a status box can be stitched across the
+prose between its lines — and anything of ours inside it makes the entry unverifiable.
+`ref` says what the entry backs (`stats.strength`, `achievements`, `inventory:torch`) and
+must name something the delta actually changes, so a citation cannot quietly outlive the
+field it described. `chapter` is only for text printed elsewhere, which the book does
+constantly: Carl reaches level 2 in ch03 but the notification prints in ch05, Mordecai's
+infobox is read a chapter after he appears, and "mana equals Intelligence" is stated once in
+ch08 and governs everything after. Cite where the words are and say why in `note`. `derived`
+marks a value computed from a stated rule rather than printed — quote the rule, put the
+arithmetic in `note` — and exempts it from the check that an asserted number appears in a
+quote. Everything that is not the book talking belongs in `note`.
 
 **Copyright.** `books/*.epub` and `data-src/` (anything derived from the full book text) are
 git-ignored and must stay uncommitted. `.env` too. `public/art/**/*.png` is tracked via
