@@ -23,8 +23,8 @@
   "pr-7": {
     "built": "2026-08-01",
     "draft": false,
-    "ref": "data/name-conventions @ c8d2df1",
-    "sha": "c8d2df1486a09b6584574758f4aa5167a25f01fe",
+    "ref": "data/name-conventions @ 5fb54ad",
+    "sha": "5fb54adbbbbe2c07387fbeeb537d01fe037ea105",
     "title": "PR #7 — Pin naming conventions, and stop invented titles impersonating the system"
   }
 }
