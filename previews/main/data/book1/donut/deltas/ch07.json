@@ -106,9 +106,8 @@
     "add": [
       {
         "id": "first-cat",
-        "name": "First Cat in the Dungeon",
-        "reward": "Legendary Quadruped Box",
-        "note": "Awarded to Donut for being the first cat to enter the World Dungeon. Reported second-hand by Carl, so the system's own wording is unknown."
+        "name": "(Unnamed first-cat achievement)",
+        "note": "Awarded for being the first cat to enter the World Dungeon. Reported second-hand by Carl, so neither the name nor the system's wording is known. It paid out a Legendary Quadruped Box."
       }
     ]
   },
