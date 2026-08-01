@@ -61,12 +61,25 @@ Rules:
                    // wording in with an "update" on the same id. Never put a later
                    // chapter's text in an earlier chapter's delta.
     "contacts":     { "add": [{ "id","name","relation","note"? }], ... },
-    "sources": [ { "field": "stats", "quote": "<verbatim book quote>" } ]
-  }
+    "sources": [ { "ref": "stats", "chapter": 8, "derived": true,
+                   "note": "<your reasoning>", "quote": "<verbatim book text>" } ]
+                   // "quote" is book text and NOTHING else — validate.ts searches the
+                   // chapter for it. Use "…" where you skip text; each side is matched
+                   // separately, so a status box can be stitched across the prose
+                   // between its lines. Your words go in "note", never in the quote.
+                   // "ref" must name something this delta changes: a path into "set"
+                   // ("stats.strength"), a whole list ("achievements"), or one item
+                   // ("inventory:torch"). Cite every field you change.
+                   // "chapter" only when the text is printed in a DIFFERENT chapter —
+                   // common, because the book reveals things late (a missed notification
+                   // read two chapters on) or states a rule once that governs later
+                   // chapters. Add a "note" saying why.
+                   // "derived" when the value is computed from a stated rule rather than
+                   // printed: quote the rule, show the arithmetic in "note".
 - Item = { "id","name","rarity":"common|uncommon|rare|epic|legendary|unknown","qty"?,"effects"?,"description"?,
            "statBonuses"?:{stat:number}, "grants"?:[{ "skill","name"?,"level" }] }.
 - IMPORTANT: stat/skill bonuses from gear go ON the item ("statBonuses"/"grants"), NOT baked into "set.stats"/"skills". Base stats only change on a permanent, item-independent change (e.g. a level-up spend).
-- ids are stable kebab-case slugs. Add a "sources" quote for every non-trivial change. Never invent numbers — use null / omit when the book doesn't state it.
+- ids are stable kebab-case slugs. Add a "sources" entry for every non-trivial change. Never invent numbers — use null / omit when the book doesn't state it.
 - EXTENSION PROTOCOL: if the chapter introduces a genuinely NEW KIND of state the shape above can't hold (not a small fact for "misc"), still capture what you can and prefix "notes" with "REVIEW NEEDED: <what and why>" so a human can decide how to model it.`;
 
 function loadPrior(book: string, char: string, chapter: number): Snapshot | null {

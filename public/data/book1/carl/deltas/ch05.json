@@ -44,11 +44,30 @@
     ]
   },
   "sources": [
-    { "field": "achievements", "quote": "New achievement! Podophilia! You’ve used your bare feet to crush and kill an opponent! ... Reward: You’ve received a Gold Shoe Box! New achievement! Boom! You’ve caused a wall-shaking explosion within the dungeon! ... Reward: You’ve received a Silver Goblin Box!" },
-    { "field": "achievements", "quote": "Okay, now that inventory is active, you can pop up your missed notifications. Let’s take look. … I had a line of the notifications. I clicked on the first one. [The eight notifications earned in chapters 2–3, readable at last.]" },
-    { "field": "inventory", "quote": "Standard Healing Potion. Increases your health by at least 50%. Doesn’t cure poison or other health-seeping conditions ... “Pick it up and place it in your inventory. A gift from me to you.”" },
-    { "field": "inventory", "quote": "Bronze Pet Box. (1/10) Scroll of Heal Critter. Pet Biscuit X 10. ... Silver Goblin Box (7/10) Dynamite X 5  Lighter  Goblin Pass ... Gold Apparel Box (8/10) Enchanted Nightgaunt Cloak of Stoutness. Enchanted Trollskin Shirt of Pummeling. ... Legendary Pet Box (10/10) Pet Biscuit X 500  Enhanced Pet Biscuit" },
-    { "field": "effects", "quote": "The Goblin Pass took the form of the same goblin-shaped skull ... it flew and smacked up against my left inner forearm ... I could feel it burning against my skin, like I was being branded." },
-    { "field": "contacts", "quote": "“Ow!” I cried as Donut leaped up and ate the treat right from my hand. Splat! The moment the cat hit the ground, she was transformed into a wet mess of flesh." }
+    {
+      "ref": "achievements:podophilia",
+      "quote": "New achievement! Podophilia! You’ve used your bare feet to crush and kill an opponent! ... Reward: You’ve received a Gold Shoe Box! New achievement! Boom! You’ve caused a wall-shaking explosion within the dungeon! ... Reward: You’ve received a Silver Goblin Box!"
+    },
+    {
+      "ref": "achievements",
+      "note": "The eight notifications earned in ch02–ch03, readable at last.",
+      "quote": "Okay, now that inventory is active, you can pop up your missed notifications. Let’s take look. … I had a line of the notifications. I clicked on the first one."
+    },
+    {
+      "ref": "inventory:potion-healing",
+      "quote": "Standard Healing Potion. Increases your health by at least 50%. Doesn’t cure poison or other health-seeping conditions ... “Pick it up and place it in your inventory. A gift from me to you.”"
+    },
+    {
+      "ref": "inventory",
+      "quote": "Bronze Pet Box. (1/10) … Scroll of Heal Critter. … Pet Biscuit X 10. … Silver Goblin Box (7/10) … Dynamite X 5 … Goblin Pass … Gold Apparel Box (8/10) … Enchanted Nightgaunt Cloak of Stoutness. … Enchanted Trollskin Shirt of Pummeling. … Legendary Pet Box (10/10)"
+    },
+    {
+      "ref": "effects:goblin-pass",
+      "quote": "The Goblin Pass took the form of the same goblin-shaped skull ... it flew and smacked up against my left inner forearm ... I could feel it burning against my skin, like I was being branded."
+    },
+    {
+      "ref": "contacts:donut",
+      "quote": "“Ow!” I cried as Donut leaped up and ate the treat right from my hand. Splat! The moment the cat hit the ground, she was transformed into a wet mess of flesh."
+    }
   ]
 }

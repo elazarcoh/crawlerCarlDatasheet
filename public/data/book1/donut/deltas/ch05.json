@@ -17,11 +17,11 @@
   },
   "sources": [
     {
-      "field": "appearance",
+      "ref": "appearance.stateId",
       "quote": "Splat! The moment the cat hit the ground, she was transformed into a wet mess of flesh. She splattered like a hunk of hairy, jellied water."
     },
     {
-      "field": "effects",
+      "ref": "effects:transforming",
       "quote": "Waiting… Waiting… appeared over the quivering, shaggy mass. … 'Transformation. Your creature is being changed somehow. It didn't teleport away, so it's not considered a negative result.'"
     }
   ]

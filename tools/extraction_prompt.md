@@ -38,7 +38,8 @@ Only include fields that changed. Shape (see `Delta` in the schema):
   "effects":      { "add": [ { "id": "…", "name": "…", "kind": "buff|debuff|neutral", "description": "…" } ] },
   "achievements": { "add": [ { "id": "…", "name": "…", "description": "…", "reward": "…", "note": "…" } ] },
   "contacts":     { "add": [ { "id": "…", "name": "…", "relation": "…", "note": "…" } ] },
-  "sources": [ { "field": "stats", "quote": "Strength: 6 / Intelligence: 3 / …" } ]
+  "sources": [ { "ref": "stats", "chapter": 4, "derived": false, "note": "…",
+                 "quote": "Strength: 6  Intelligence: 3  …" } ]
 }
 ```
 
@@ -64,7 +65,34 @@ Rules:
   not footwear, and `feet` must stay empty because he is barefoot all book.
 - Anything in `equipment` contributes its `statBonuses`/`grants`; items merely
   carried belong in `inventory` and contribute nothing.
-- **Add a `sources` quote for every non-trivial change** so data is auditable.
+- **Add a `sources` entry for every non-trivial change** so data is auditable.
+
+### Citations: the quote is book text and nothing else (IMPORTANT)
+
+`npm run validate` searches the chapter for every quote, so a quote that has
+been tidied up, joined across a paragraph break, or annotated will fail. Keep
+the four other fields doing their jobs instead:
+
+- **`quote`** — copied from the page, character for character. Where you skip
+  text, write `…`; each side of the ellipsis is matched separately, so you can
+  stitch a status box together across the prose between its lines. Never put
+  your own words inside it, not even in brackets.
+- **`ref`** — what the entry backs, and it must be something this delta actually
+  changes: a path into `set` (`stats.strength`, `misc.crawlerId`), a whole list
+  (`achievements`), or one item in a list (`inventory:torch`). Every field you
+  change should have at least one entry pointing at it.
+- **`chapter`** — only when the text is printed somewhere other than this
+  chapter, which happens more than you would think. Carl reaches level 2 in
+  ch03, but the notification is only printed in ch05 when his inventory comes
+  online; Mordecai's infobox is read in ch03, a chapter after he appears; the
+  rule that mana equals Intelligence is stated once, in ch08, and governs every
+  chapter after it. Cite where the words are, and add a `note` saying why.
+- **`derived`** — set it when the number is computed from a rule rather than
+  printed. Donut's Strength at level 2 comes from Enhanced Growth, not from any
+  sentence, so it is `derived` with the rule quoted and the arithmetic in
+  `note`. Validation asks for a quote containing the number otherwise.
+- **`note`** — your reasoning, the arithmetic, why the chapter differs.
+  Everything that is not the book talking.
 
 ### Achievements: quote the AI, don't summarise it (IMPORTANT)
 

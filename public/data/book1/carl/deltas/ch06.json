@@ -134,28 +134,36 @@
   },
   "sources": [
     {
-      "field": "stats.constitution",
+      "ref": "equipment:nightgaunt-cloak",
       "quote": "I felt a quick rush of power course through me as my constitution rose from five to nine."
     },
     {
-      "field": "stats.strength",
+      "ref": "equipment:toe-ring",
       "quote": "Imbues wearer with +3 Strength and gives +3 to the skill Powerful Strike. ... I felt my strength rise by 50%."
     },
     {
-      "field": "equipment",
+      "ref": "equipment",
       "quote": "The fingerless gloves went onto my hands. ... I pulled off my jacket and slipped the short-sleeved shirt on. ... I put the leather jacket back on and then added the cloak."
     },
     {
-      "field": "skills.regeneration",
+      "ref": "equipment:trollskin-shirt",
       "quote": "The wearer of this shirt gains +7 to the Regeneration skill. ... A level-seven regeneration skill means you’re back to full health pretty quickly after taking damage. In as little as two minutes."
     },
     {
-      "field": "inventory",
+      "ref": "inventory",
       "quote": "The box contained another torch and a pair of healing potions, leaving me with a total of six."
     },
     {
-      "field": "achievements",
+      "ref": "achievements:oooh-magic",
       "quote": "New achievement! Oooh, Magic! You’re wearing magical gear for the first time! ... Reward: You’ve received a Bronze Adventurer Box!"
+    },
+    {
+      "ref": "skills:frogger",
+      "quote": "Frogger – 1981 Video Game Cabinet Version (result hidden due to filters)"
+    },
+    {
+      "ref": "effects:nightgaunt-stoutness",
+      "quote": "Enchanted Nightgaunt Cloak of Stoutness."
     }
   ]
 }

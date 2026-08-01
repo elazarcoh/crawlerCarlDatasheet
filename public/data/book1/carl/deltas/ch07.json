@@ -12,8 +12,17 @@
     ]
   },
   "sources": [
-    { "field": "contacts", "quote": "Strength: 11  Intelligence: 11  Constitution: 2  Dexterity: 8  Charisma: 25 ... Enhanced Growth. After an initial boost to four random stats, all additional levels will automatically grant +1 to Strength and Intelligence. Charisma will gain +2 per level." },
-    { "field": "identity.title", "quote": "Princess Donut has changed your title to Royal Bodyguard." },
-    { "field": "misc.party", "quote": "Princess Donut has named your party The Royal Court of Princess Donut. ... Princess Donut has changed her title to Grand Champion Best in Dungeon." }
+    {
+      "ref": "contacts:donut",
+      "quote": "Strength: 11  Intelligence: 11  Constitution: 2  Dexterity: 8  Charisma: 25 ... Enhanced Growth. After an initial boost to four random stats, all additional levels will automatically grant +1 to Strength and Intelligence. Charisma will gain +2 per level."
+    },
+    {
+      "ref": "identity.title",
+      "quote": "Princess Donut has changed your title to Royal Bodyguard."
+    },
+    {
+      "ref": "misc.party",
+      "quote": "Princess Donut has named your party The Royal Court of Princess Donut. ... Princess Donut has changed her title to Grand Champion Best in Dungeon."
+    }
   ]
 }

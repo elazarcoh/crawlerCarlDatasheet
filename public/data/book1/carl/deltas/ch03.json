@@ -22,8 +22,33 @@
     ]
   },
   "sources": [
-    { "field": "level", "quote": "Level Up! You are now level 2. Three stat points gained." },
-    { "field": "skills", "quote": "You’ve gained a skill level! Pugilism Level 4. The art of beating the shit out of your opponents with closed fists. Each level of this skill increases your bare-knuckle damage by 25%." },
-    { "field": "misc.undistributedStatPoints", "quote": "I received three stat points every time I leveled up, but I couldn’t distribute them until I picked a race and class. And I couldn’t do that until I reached the third floor down." }
+    {
+      "ref": "level",
+      "chapter": 5,
+      "note": "Carl levels up here; the notification itself is only printed in ch05, when his inventory comes online and he reads the backlog.",
+      "quote": "Level Up! You are now level 2. Three stat points gained."
+    },
+    {
+      "ref": "skills:pugilism",
+      "chapter": 5,
+      "note": "Same missed-notification backlog as the level-up.",
+      "quote": "You’ve gained a skill level! Pugilism Level 4. The art of beating the shit out of your opponents with closed fists. Each level of this skill increases your bare-knuckle damage by 25%."
+    },
+    {
+      "ref": "misc.undistributedStatPoints",
+      "chapter": 4,
+      "note": "Mordecai explains the rule a chapter later; the three points are banked from this level-up.",
+      "quote": "I received three stat points every time I leveled up, but I couldn’t distribute them until I picked a race and class. And I couldn’t do that until I reached the third floor down."
+    },
+    {
+      "ref": "location",
+      "quote": "Tutorial Guild Hall … This is a Safe Zone."
+    },
+    {
+      "ref": "achievements",
+      "chapter": 5,
+      "note": "Earned here, but his inventory is inactive, so they stay unread placeholders until ch05.",
+      "quote": "Okay, now that inventory is active, you can pop up your missed notifications."
+    }
   ]
 }
