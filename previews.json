@@ -26,5 +26,12 @@
     "ref": "data/source-citations @ aac029c",
     "sha": "aac029cae1232c5ca2f58663d5af3cc0afa15e98",
     "title": "PR #6 — Make citations checkable: ref, chapter, derived, note"
+  },
+  "pr-7": {
+    "built": "2026-08-01",
+    "draft": false,
+    "ref": "data/name-conventions @ c8d2df1",
+    "sha": "c8d2df1486a09b6584574758f4aa5167a25f01fe",
+    "title": "PR #7 — Pin naming conventions, and stop invented titles impersonating the system"
   }
 }
