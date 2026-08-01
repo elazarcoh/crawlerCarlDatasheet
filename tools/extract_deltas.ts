@@ -51,15 +51,20 @@ Rules:
     "achievements": { "add": [{ "id","name","description"?,"reward"?,"note"? }], ... },
                    // "name"/"description"/"reward" are the system's VERBATIM words
                    // (the AI's snark is the content — never flatten a reward to
-                   // "None.", the joke is usually in it). Omit "description" when the
-                   // book only mentions the achievement without showing the box, and
-                   // put your own summary in "note" — which is the only field that is
-                   // yours rather than the book's.
-                   // If the chapter awards an achievement without showing the box, add it
-                   // as { "name": "(Unread notification)", "note": "Earned for … Queued
-                   // unread: …" } and let the chapter where it is actually read fill the
-                   // wording in with an "update" on the same id. Never put a later
-                   // chapter's text in an earlier chapter's delta.
+                   // "None.", the joke is usually in it). When the book only MENTIONS an
+                   // achievement without showing the box, omit BOTH "description" and
+                   // "reward", name it "(Unnamed <what for> achievement)", and put
+                   // everything in "note" — the only field that is yours. Do not turn
+                   // narration into a title: "One for looting a corpse" is not the name
+                   // "Looted a Corpse". Check first whether the book prints that
+                   // achievement's wording elsewhere (names are global, so Donut's unseen
+                   // notifications match Carl's) and if so use it with a "chapter" cite.
+                   // If the box WILL be shown later, use "(Unread notification)" instead
+                   // and fill the wording in with an "update" on the same id in that
+                   // chapter's delta. Never put a later chapter's text in an earlier
+                   // chapter's delta.
+                   // One id keeps one "name" for the whole book — renaming anything other
+                   // than a "(…)" placeholder is a validation error.
     "contacts":     { "add": [{ "id","name","relation","note"? }], ... },
     "sources": [ { "ref": "stats", "chapter": 8, "derived": true,
                    "note": "<your reasoning>", "quote": "<verbatim book text>" } ]

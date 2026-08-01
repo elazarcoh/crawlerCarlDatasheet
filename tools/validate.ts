@@ -71,9 +71,28 @@ const ELISION = /\s*(?:\[\s*(?:\u2026|\.\.\.)\s*\]|\u2026|\.\.\.)\s*/;
 function quoted(book: string, chapter: number, quote: string, minLen = 12): boolean | undefined {
   const text = bookText(book, chapter);
   if (!text) return undefined;
+  // minLen drops the stubs an elision leaves behind, which would match noise.
+  // If that leaves nothing, the whole string is short (a reward of "None.") —
+  // check it as it stands rather than report it as unverifiable.
   const parts = quote.split(ELISION).map(norm).filter((p) => p.length > minLen);
-  return parts.length ? parts.every((p) => text.includes(p)) : undefined;
+  const whole = norm(quote);
+  if (!parts.length) return whole ? text.includes(whole) : undefined;
+  return parts.every((p) => text.includes(p));
 }
+
+/** As `quoted`, but satisfied by any one of several chapters. */
+function quotedIn(book: string, chapters: number[], quote: string, minLen = 12): boolean | undefined {
+  let known = false;
+  for (const c of chapters) {
+    const hit = quoted(book, c, quote, minLen);
+    if (hit) return true;
+    if (hit !== undefined) known = true;
+  }
+  return known ? false : undefined;
+}
+
+/** A name the book never gave, written so it reads as a gap: "(Unnamed …)". */
+const isPlaceholder = (name: string) => name.startsWith("(");
 
 const WORD_NUMBERS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
   "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
@@ -122,7 +141,7 @@ function listTargets(d: any): Map<string, Set<string>> {
   return m;
 }
 
-function validateCharacter(book: string, charId: string, chapters: number[]) {
+function validateCharacter(book: string, charId: string, chapters: number[], names: Map<string, string>) {
   const dir = join(DATA, book, charId);
   const baseParsed = Snapshot.safeParse(readJson(join(dir, "base.json")));
   if (!baseParsed.success) {
@@ -134,6 +153,10 @@ function validateCharacter(book: string, charId: string, chapters: number[]) {
   // Track the id set per list as we fold deltas in chapter order.
   const ids: Record<string, Set<string>> = {};
   for (const f of LIST_FIELDS) ids[f] = new Set((base as any)[f].map((i: any) => i.id));
+
+  for (const f of LIST_FIELDS) {
+    for (const it of (base as any)[f] as any[]) if (it.name) names.set(it.id, it.name);
+  }
 
   const deltaDir = join(dir, "deltas");
   const files = existsSync(deltaDir)
@@ -170,16 +193,31 @@ function validateCharacter(book: string, charId: string, chapters: number[]) {
       }
     }
 
-    checkCitations(book, tag, d);
+    checkCitations(book, tag, d, names);
   }
 }
 
 /* ------------------------------ citations -------------------------------- */
 
-function checkCitations(book: string, tag: string, d: any) {
+function checkCitations(book: string, tag: string, d: any, names: Map<string, string>) {
   const paths = setPaths(d.set);
   const lists = listTargets(d);
   const sources: any[] = d.sources ?? [];
+
+  /**
+   * Chapters this delta's text may live in: its own, plus any a source for
+   * that field cites. The book reveals things late — Carl gains Pugilism in
+   * ch03 and reads its name in ch05 — and a citation already records where.
+   */
+  const citedChapters = (field: string, id?: string): number[] => {
+    const out = new Set<number>([d.chapterIndex]);
+    for (const s of sources) {
+      if (s.chapter === undefined) continue;
+      const [head, rid] = s.ref.split(":");
+      if (head === field && (rid === undefined || rid === id)) out.add(s.chapter);
+    }
+    return [...out];
+  };
 
   sources.forEach((s, i) => {
     const at = `${tag}: sources[${i}]`;
@@ -217,14 +255,18 @@ function checkCitations(book: string, tag: string, d: any) {
     else if (!ok) err(`${at}: quote not found in ch${chapter} — "${s.quote.slice(0, 60)}…"`);
   });
 
-  // An achievement's description is the AI's own words. Ours belong in `note`.
+  // An achievement's description and reward are the AI's own words, printed in
+  // its box. Anything of ours about it belongs in `note`.
   for (const op of ["add", "update"] as const) {
     for (const a of (d.achievements?.[op] ?? []) as any[]) {
-      if (!a.description) continue;
-      const ok = quoted(book, d.chapterIndex, a.description);
-      if (ok === undefined) unchecked++;
-      else if (!ok) {
-        err(`${tag}: achievements.${op} "${a.id}" — description is not verbatim ch${d.chapterIndex} text`);
+      const chapters = citedChapters("achievements", a.id);
+      for (const field of ["description", "reward"] as const) {
+        if (!a[field]) continue;
+        const ok = quotedIn(book, chapters, a[field]);
+        if (ok === undefined) unchecked++;
+        else if (!ok) {
+          err(`${tag}: achievements.${op} "${a.id}" — ${field} is not verbatim ${chapters.map((c) => "ch" + c).join(" / ")} text`);
+        }
       }
     }
   }
@@ -241,14 +283,28 @@ function checkCitations(book: string, tag: string, d: any) {
     }
   }
 
-  // Names the book never uses are ours, not its — a standing fact about the
-  // data rather than a defect, so it is counted, and only listed on request.
+  // Names are checked when they are introduced or revealed, never on a re-add:
+  // equipping moves an item from `inventory` to `equipment` and a stackable is
+  // added again to bump `qty`, and neither chapter need mention it by name.
   for (const [f] of lists) {
-    for (const it of (d[f]?.add ?? []) as any[]) {
-      const name = String(it.name ?? "").replace(/\s*\([^)]*\)/g, "").trim();
-      if (!name || name.startsWith("(")) continue;
-      if (quoted(book, d.chapterIndex, name, 2) === false) {
-        coined.push(`${tag}: ${f} "${name}" is not the book's wording`);
+    for (const op of ["add", "update"] as const) {
+      for (const it of (d[f]?.[op] ?? []) as any[]) {
+        if (!it.name) continue;
+        const previous = names.get(it.id);
+        if (previous === it.name) continue;
+
+        // One id, one display name — the UI shows a single row for it across
+        // every chapter. The sole exception is a placeholder being filled in.
+        if (previous !== undefined && !isPlaceholder(previous)) {
+          err(`${tag}: ${f} "${it.id}" renamed "${previous}" -> "${it.name}"; only a "(…)" placeholder may be renamed`);
+        }
+        names.set(it.id, it.name);
+
+        const bare = it.name.replace(/\s*\([^)]*\)/g, "").trim();
+        if (!bare || isPlaceholder(it.name)) continue;
+        if (quotedIn(book, citedChapters(f, it.id), bare, 2) === false) {
+          coined.push(`${tag}: ${f} "${it.name}" is not the book's wording`);
+        }
       }
     }
   }
@@ -281,7 +337,11 @@ function main() {
       continue;
     }
     const chapters = mParsed.data.chapters.map((c) => c.index);
-    for (const c of mParsed.data.characters) validateCharacter(book, c.id, chapters);
+    // Display name per id, shared across the book: the same system item shows
+    // one name wherever it appears, and an item keeps it when it moves from
+    // `inventory` to `equipment`.
+    const names = new Map<string, string>();
+    for (const c of mParsed.data.characters) validateCharacter(book, c.id, chapters, names);
   }
 
   if (warnings.length) {
