@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { loadBook, type BookData } from "./data/loader";
 import { compareSnapshots, type Change, type ChangeSet } from "./data/diff";
 import { deriveViewSnapshot } from "./data/derive";
+import { readViewParams, writeViewParams } from "./urlState";
 import { TooltipProvider } from "./components/Tooltip";
 import { SceneBackground } from "./components/SceneBackground";
 import { BookContext } from "./components/BookContext";
@@ -35,23 +36,53 @@ export default function App() {
   useEffect(() => {
     loadBook(BOOK_ID)
       .then((b) => {
+        const { chapter, charId: wantedChar } = readViewParams();
+
+        // Honour the URL only where the manifest agrees, so a hand-edited or
+        // stale link lands on a real view rather than a blank sheet.
+        const resolvedChapter =
+          chapter !== null && b.manifest.chapters.some((c) => c.index === chapter)
+            ? chapter
+            : (b.manifest.chapters[0]?.index ?? 1);
+
+        // Checked against the resolved chapter, not the requested one, so a
+        // junk ch= cannot smuggle in a character the fallback chapter hides.
+        const inParty = b.manifest.characters.filter(
+          (c) => c.joinsPartyAtChapter <= resolvedChapter,
+        );
+        const resolvedChar =
+          wantedChar !== null && inParty.some((c) => c.id === wantedChar)
+            ? wantedChar
+            : (inParty[0]?.id ?? b.manifest.characters[0]?.id ?? "carl");
+
         setBook(b);
-        setChapterIndex(b.manifest.chapters[0]?.index ?? 1);
-        setCharId(b.manifest.characters[0]?.id ?? "carl");
+        setChapterIndex(resolvedChapter);
+        setCharId(resolvedChar);
       })
       .catch((e) => setError(String(e)));
   }, []);
 
-  if (error) return <div className="error">Failed to load: {error}</div>;
-  if (!book) return <div className="loading">Loading the dungeon…</div>;
-
-  const chapters = book.manifest.chapters;
-  const visible = book.manifest.characters.filter(
+  // Derived above the early returns because the write-back effect below needs
+  // activeId, and a hook cannot sit after a conditional return.
+  const chapters = book?.manifest.chapters ?? [];
+  const visible = (book?.manifest.characters ?? []).filter(
     (c) => c.joinsPartyAtChapter <= chapterIndex,
   );
   const activeId = visible.some((c) => c.id === charId)
     ? charId
     : (visible[0]?.id ?? charId);
+
+  // Mirror the view into the URL so a refresh keeps its place and the link can
+  // be shared. activeId rather than charId: charId can name a character this
+  // chapter hides, so a shared link would show the recipient someone they
+  // cannot see. Running on load too means an invalid incoming URL rewrites
+  // itself to whatever is actually on screen.
+  useEffect(() => {
+    if (book) writeViewParams({ chapter: chapterIndex, charId: activeId });
+  }, [book, chapterIndex, activeId]);
+
+  if (error) return <div className="error">Failed to load: {error}</div>;
+  if (!book) return <div className="loading">Loading the dungeon…</div>;
 
   const charData = book.characters.get(activeId);
   const snap = charData?.composed.byChapter.get(chapterIndex) ?? null;
