@@ -1,6 +1,6 @@
 # URL-Backed View State Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Put the selected chapter and character in the query string so a refresh keeps its place and a URL reproduces the same view for someone else.
 
@@ -35,7 +35,7 @@ Creates the read/write pair in isolation. Nothing imports it yet, so this task's
   - `export function readViewParams(): ViewParams`
   - `export function writeViewParams(v: { chapter: number; charId: string }): void`
 
-- [ ] **Step 1: Create `src/urlState.ts`**
+- [x] **Step 1: Create `src/urlState.ts`**
 
 ```ts
 /**
@@ -94,13 +94,13 @@ export function writeViewParams(v: { chapter: number; charId: string }): void {
 
 Note the regex: `/^\d+$/` rejects `-1`, `1.5`, `5abc` and `""`, all of which would otherwise slip through `Number()` or `parseInt()` as a number. Chapter indices are positive integers.
 
-- [ ] **Step 2: Type-check**
+- [x] **Step 2: Type-check**
 
 Run: `npm run build`
 
 Expected: PASS, no output from `tsc`, then a Vite build summary. If `tsc` reports `'window' is not defined` or similar, stop — `tsconfig.json` is missing the DOM lib and that is a separate problem to raise, not to patch around.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/urlState.ts
@@ -122,14 +122,14 @@ git commit -m "Add a module for reading and writing the view coordinates in the 
 
 `App.tsx` holds `chapterIndex` (`:31`) and `charId` (`:32`) as `useState`. There are two distinct notions of "selected character":
 
-- `charId` — what the user last clicked. It can name a character the currently selected chapter hides, and it is deliberately kept so that stepping forward past their join chapter restores them.
+- `charId` — what the user last clicked. `activeId` exists as a guard: `charId` can in principle name a hidden character, but `onChapter` overwrites it with the first visible character when stepping to a chapter that hides them, making the guard defensive rather than load-bearing.
 - `activeId` (`:52`) — who is actually rendered: `charId` if visible at this chapter, else the first visible character.
 
 The URL must carry **`activeId`**. Writing `charId` would let a shared link name someone the recipient cannot see.
 
 That creates an ordering problem this task has to solve. `activeId` is currently computed at `:52`, which is *after* the early returns at `:45-46` — and a React hook cannot live after a conditional return. So the derivations move above the guards, computed defensively against a possibly-null `book`.
 
-- [ ] **Step 1: Add the import**
+- [x] **Step 1: Add the import**
 
 Add to the import block at the top of `src/App.tsx`, after the `./data/derive` import on line 4:
 
@@ -137,7 +137,7 @@ Add to the import block at the top of `src/App.tsx`, after the `./data/derive` i
 import { readViewParams, writeViewParams } from "./urlState";
 ```
 
-- [ ] **Step 2: Resolve the URL params in the load effect**
+- [x] **Step 2: Resolve the URL params in the load effect**
 
 Replace the whole effect at `src/App.tsx:35-43`:
 
@@ -186,7 +186,7 @@ with:
   }, []);
 ```
 
-- [ ] **Step 3: Hoist the derivations above the early returns and add the write-back effect**
+- [x] **Step 3: Hoist the derivations above the early returns and add the write-back effect**
 
 Immediately after the effect from Step 2, and **before** the two early returns, insert:
 
@@ -211,7 +211,7 @@ Immediately after the effect from Step 2, and **before** the two early returns, 
   }, [book, chapterIndex, activeId]);
 ```
 
-- [ ] **Step 4: Delete the now-duplicated derivations**
+- [x] **Step 4: Delete the now-duplicated derivations**
 
 The original block at what was `src/App.tsx:48-54` is now dead — Step 3 defines all three names. Delete exactly these lines, which sit just after `if (!book) return <div className="loading">Loading the dungeon…</div>;`:
 
@@ -227,13 +227,13 @@ The original block at what was `src/App.tsx:48-54` is now dead — Step 3 define
 
 Leave the following `const charData = book.characters.get(activeId);` and everything after it untouched.
 
-- [ ] **Step 5: Type-check**
+- [x] **Step 5: Type-check**
 
 Run: `npm run build`
 
 Expected: PASS. A `Cannot redeclare block-scoped variable 'chapters'` error means Step 4 was skipped.
 
-- [ ] **Step 6: Manual verification**
+- [x] **Step 6: Manual verification**
 
 Run: `npm run dev`, then open `http://localhost:5173`.
 
@@ -246,7 +246,7 @@ Work through all six, and record the actual result of each — do not report thi
 5. **Spoiler safety across the boundary.** Load `http://localhost:5173/?ch=2&char=donut` directly. It must resolve to `char=carl` — the URL is not a way around `joinsPartyAtChapter`.
 6. **Back button.** From the baseline load, change the chapter three times, then press the browser back button. It leaves the site (or goes to the previous page / a blank new tab) rather than stepping back through the chapters.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/App.tsx

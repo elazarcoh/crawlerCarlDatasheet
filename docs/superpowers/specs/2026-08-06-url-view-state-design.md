@@ -1,7 +1,7 @@
 # Chapter/character selection in the URL
 
 **Date:** 2026-08-06
-**Status:** approved, not yet implemented
+**Status:** implemented (branch `feat/url-view-state`, commits 63717dc and 4c5ab37)
 
 ## Problem
 
