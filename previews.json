@@ -19,5 +19,12 @@
     "ref": "data/book1-ch10 @ fc7b9e6",
     "sha": "fc7b9e60421d8aec3559c966dbf1b83cecbbc38c",
     "title": "PR #4 — Add book 1 chapter 10 (safe-room rest and the Scatterer grind)"
+  },
+  "pr-9": {
+    "built": "2026-08-06",
+    "draft": false,
+    "ref": "ui/mobile-friendliness @ 4f8a2f8",
+    "sha": "4f8a2f8620051a1347a760b18988d4c95f8b1341",
+    "title": "PR #9 — Make the statsheet usable on a phone"
   }
 }
