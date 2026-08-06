@@ -6,6 +6,13 @@
     "sha": "1ab5786c1c851ba4ab2c89c71e04264ccf5dc906",
     "title": "main — upstream baseline"
   },
+  "pr-10": {
+    "built": "2026-08-06",
+    "draft": false,
+    "ref": "feat/url-view-state @ b9c677d",
+    "sha": "b9c677d6e9f03d0fe46ca029da27a42fe822aad4",
+    "title": "PR #10 — Keep the chapter and character in the URL"
+  },
   "pr-2": {
     "built": "2026-07-30",
     "draft": true,
